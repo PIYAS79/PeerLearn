@@ -74,9 +74,19 @@ const get_all_person = async (params: Person_Query_Type, pagination: Pagination_
     };
 }
 
-const get_person_by_id = async (id: string) => {};
+const get_person_by_id = async (id: string) => {
+    const person_data = await prisma.person.findUnique({
+        where: { id },
+        include: {
+            academicInfo: true,
+            expertises: true
+        }
+    })
+    return person_data;
+};
 
 export const Person_Services = {
     update_person,
     get_all_person,
+    get_person_by_id
 }
