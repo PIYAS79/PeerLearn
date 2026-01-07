@@ -74,6 +74,7 @@ const get_all_person = async (params: Person_Query_Type, pagination: Pagination_
     };
 }
 
+const get_person_by_id = async (id: string) => {};
 
 export const Person_Services = {
     update_person,

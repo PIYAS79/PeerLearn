@@ -51,7 +51,8 @@ model Academic_Info {
   student_id String
   university String
   department Academic_Deprartment
-  level      Academic_Term
+  level      Academic_Level
+  term       Academic_Term
   created_at DateTime             @default(now())
   updated_at DateTime             @updatedAt
 
