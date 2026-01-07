@@ -1,0 +1,132 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String      @id @default(uuid())
+  email      String      @unique
+  password   String
+  role       User_Role   @default(STUDENT)
+  status     User_Status @default(ACTIVE)
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+
+  person Person?
+
+  @@map("users")
+}
+
+model Person {
+  id         String   @id @default(uuid())
+  email      String   @unique
+  first_name String
+  last_name  String
+  photo_url  String?
+  is_active  Boolean  @default(true)
+  bkash      String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user             User               @relation(fields: [email], references: [email])
+  academicInfo     Academic_Info?
+  personExpertises Person_Expertise[]
+
+  @@map("persons")
+}
+
+model Academic_Info {
+  id         String               @id @default(uuid())
+  person_id  String               @unique
+  person     Person               @relation(fields: [person_id], references: [id])
+  student_id String
+  university String
+  department Academic_Deprartment
+  level      Academic_Term
+  created_at DateTime             @default(now())
+  updated_at DateTime             @updatedAt
+
+  @@map("academic_informations")
+}
+
+model Expertise {
+  id               String             @id @default(uuid())
+  course_title     Academic_Courses
+  course_code      String
+  topic            String
+  level            Expertise_Level
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+  personExpertises Person_Expertise[]
+
+  @@map("expertises")
+}
+
+model Person_Expertise {
+  expertise_id String
+  expertise    Expertise @relation(fields: [expertise_id], references: [id])
+  person_id    String
+  person       Person    @relation(fields: [person_id], references: [id])
+
+  @@id([expertise_id, person_id])
+}
+
+enum User_Status {
+  ACTIVE
+  BLOCK
+}
+
+enum User_Role {
+  SUPERADMIN
+  ADMIN
+  STUDENT
+  TEACHER
+}
+
+enum Academic_Level {
+  L1
+  L2
+  L3
+  L4
+}
+
+enum Academic_Term {
+  T1
+  T2
+  T3
+}
+
+// after constant
+enum Academic_Courses {
+  OS
+  DMML
+  MAD
+  AI
+  WEB_ENGINEERING
+}
+
+// after constant
+enum Academic_Deprartment {
+  CSE
+  CIS
+  SWE
+  EEE
+  MCT
+  ESDM
+  PHRM
+  TEX
+}
+
+enum Expertise_Level {
+  EXPERT
+  BEGINNER
+}
