@@ -37,9 +37,11 @@ model Person {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  user         User           @relation(fields: [email], references: [email])
-  academicInfo Academic_Info?
-  expertises   Expertise[]
+  user           User           @relation(fields: [email], references: [email])
+  academicInfo   Academic_Info?
+  expertises     Expertise[]
+  as_req_maker   Request[]      @relation("RequestMaker")
+  as_target_user Request[]      @relation("TargetUser")
 
   @@map("persons")
 }
@@ -73,15 +75,30 @@ model Expertise {
   @@map("expertises")
 }
 
-// model Person_Expertise {
-//   expertise_id String
-//   expertise    Expertise @relation(fields: [expertise_id], references: [id])
-//   person_id    String
-//   person       Person    @relation(fields: [person_id], references: [id])
+model Request {
+  id             String         @id @default(uuid())
+  req_maker_id   String
+  req_maker      Person         @relation("RequestMaker", fields: [req_maker_id], references: [id])
+  target_user_id String
+  target_user    Person         @relation("TargetUser", fields: [target_user_id], references: [id])
+  title          String
+  message        String
+  status         Request_Status @default(PENDING)
+  is_urgent      Boolean        @default(false)
+  call_id        String?
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
 
-//   @@id([expertise_id, person_id])
-//   @@map("person_expertises")
-// }
+  @@map("requests")
+}
+
+enum Request_Status {
+  PENDING
+  ACCEPTED
+  ONGOING
+  COMPLETED
+  REJECTED
+}
 
 enum User_Status {
   ACTIVE

@@ -4,6 +4,7 @@ import { Person_Routes } from '../module/PERSON/person.route';
 import { Auth_Routes } from '../module/AUTH/auth.routes';
 import { Academic_Routes } from '../module/ACADEMIC/academic.routes';
 import { Expertise_Routes } from '../module/EXPERTISE/expertise.routes';
+import { Request_Routes } from '../module/REQUEST/request.routes';
 
 const router = express.Router();
 
@@ -22,8 +23,11 @@ const final_routes = [
         path: '/academic',
         route: Academic_Routes
     }, {
-        path:'/expertise',
-        route:Expertise_Routes
+        path: '/expertise',
+        route: Expertise_Routes
+    }, {
+        path: '/request',
+        route: Request_Routes
     }
 ]
 
