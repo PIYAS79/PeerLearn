@@ -1,3 +1,4 @@
+import { Request_Status } from "@prisma/client";
 import { z } from "zod";
 
 
@@ -17,5 +18,11 @@ export const Update_Request_Zod_Type = z.object({
         title: z.string().optional(),
         message: z.string().optional(),
         is_urgent: z.boolean().optional(),
+    })
+})
+
+export const Update_Request_Status_Zod_Type = z.object({
+    body: z.object({
+        status: z.enum(['ONGOING', 'COMPLETED', 'REJECTED']),
     })
 })

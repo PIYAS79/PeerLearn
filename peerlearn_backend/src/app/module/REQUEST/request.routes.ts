@@ -2,7 +2,7 @@ import express from 'express';
 import Validation_Request from '../../utils/req.validation';
 import Check_Roles from '../../middlewares/check_role_by_token';
 import { User_Role } from '@prisma/client';
-import { Create_Request_Zod_Type, Update_Request_Zod_Type } from './request.zod';
+import { Create_Request_Zod_Type, Update_Request_Status_Zod_Type, Update_Request_Zod_Type } from './request.zod';
 import { Request_Controllers } from './request.controller';
 
 
@@ -40,6 +40,12 @@ router.get('/',
     Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.STUDENT, User_Role.TEACHER),
     Request_Controllers.get_all_requests
 );
+
+router.patch('/status/:id',
+    Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.STUDENT, User_Role.TEACHER),
+    Validation_Request(Update_Request_Status_Zod_Type),
+    Request_Controllers.update_status
+)
 
 
 export const Request_Routes = router;

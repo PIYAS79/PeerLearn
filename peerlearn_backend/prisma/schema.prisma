@@ -37,11 +37,13 @@ model Person {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  user           User           @relation(fields: [email], references: [email])
-  academicInfo   Academic_Info?
-  expertises     Expertise[]
-  as_req_maker   Request[]      @relation("RequestMaker")
-  as_target_user Request[]      @relation("TargetUser")
+  user                  User           @relation(fields: [email], references: [email])
+  academicInfo          Academic_Info?
+  expertises            Expertise[]
+  as_req_maker          Request[]      @relation("RequestMaker")
+  as_target_user        Request[]      @relation("TargetUser")
+  as_review_maker       Review[]       @relation("ReviewMaker")
+  as_review_target_user Review[]       @relation("ReviewTargetUser")
 
   @@map("persons")
 }
@@ -89,7 +91,44 @@ model Request {
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
 
+  questionStacks Question_Stack[]
+
   @@map("requests")
+}
+
+model Question_Stack {
+  id          String  @id @default(uuid())
+  request_id  String
+  request     Request @relation(fields: [request_id], references: [id])
+  question    String
+  opt_a       String
+  opt_b       String
+  opt_c       String
+  opt_d       String
+  correct_ans String
+
+  @@map("question_stack")
+}
+
+model Review {
+  id             String           @id @default(uuid())
+  req_maker_id   String
+  req_maker      Person           @relation("ReviewMaker", fields: [req_maker_id], references: [id])
+  target_user_id String
+  target_user    Person           @relation("ReviewTargetUser", fields: [target_user_id], references: [id])
+  ai_rating      Int
+  human_rating   Int
+  title          String
+  details        String
+  course_title   Academic_Courses
+  course_code    String?
+  topic          String
+
+  @@map("reviews")
+}
+
+enum Review_Status {
+  PENDING
 }
 
 enum Request_Status {

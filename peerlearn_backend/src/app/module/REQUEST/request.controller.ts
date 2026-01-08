@@ -59,6 +59,15 @@ const get_all_requests = Async_Catch(async (req: Request, res: Response) => {
     });
 })
 
+const update_status = Async_Catch(async (req: Request, res: Response) => {
+    const result = await Request_Services.update_status(req.params.id as string, req.body);
+    res.status(httpStatus.OK).json({
+        status: 'success',
+        message: 'Request status updated successfully',
+        data: result,
+    });
+})
+
 
 
 export const Request_Controllers = {
@@ -67,5 +76,6 @@ export const Request_Controllers = {
     get_requests_as_request_maker,
     get_requests_as_target_user,
     delete_request,
-    get_all_requests
+    get_all_requests,
+    update_status
 }

@@ -13,3 +13,7 @@ export type Update_Request_Type = {
     message?: string,
     is_urgent?: boolean
 }
+
+export type Update_Request_Status_Type = {
+    status: 'ONGOING' | 'COMPLETED' | 'REJECTED'
+}

@@ -1,8 +1,9 @@
-import type { Create_Request_Type, Update_Request_Type } from "./request.interface";
+import type { Create_Request_Type, Update_Request_Status_Type, Update_Request_Type } from "./request.interface";
 import { prisma } from "../../lib/prisma";
 import { Request_Status } from "@prisma/client";
 import Final_App_Error from "../../errors/Final_App_Error";
 import httpStatus from "http-status-codes";
+
 
 
 const create_request = async (data: Create_Request_Type) => {
@@ -119,7 +120,24 @@ const get_all_requests = async () => {
     return requests;
 }
 
-// the status update api is inside the question_stack module
+// {ACCEPTED} = status update api is inside the question_stack module
+
+const update_status = async (request_id: string, data: Update_Request_Status_Type) => {
+    const request = await prisma.request.findUnique({
+        where: { id: request_id }
+    })
+
+    if (!request) {
+        throw new Final_App_Error(httpStatus.NOT_FOUND, 'Request not found');
+    }
+    console.log(request);
+    const result = await prisma.request.update({
+        where: { id: request_id },
+        data: data
+    })
+
+    return result
+}
 
 export const Request_Services = {
     create_request,
@@ -127,5 +145,6 @@ export const Request_Services = {
     get_requests_as_request_maker,
     get_requests_as_target_user,
     delete_request,
-    get_all_requests
+    get_all_requests,
+    update_status
 }
