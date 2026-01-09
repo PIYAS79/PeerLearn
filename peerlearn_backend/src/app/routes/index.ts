@@ -5,6 +5,7 @@ import { Auth_Routes } from '../module/AUTH/auth.routes';
 import { Academic_Routes } from '../module/ACADEMIC/academic.routes';
 import { Expertise_Routes } from '../module/EXPERTISE/expertise.routes';
 import { Request_Routes } from '../module/REQUEST/request.routes';
+import { Question_Routes } from '../module/QUESTION/question.routes';
 
 const router = express.Router();
 
@@ -28,6 +29,9 @@ const final_routes = [
     }, {
         path: '/request',
         route: Request_Routes
+    }, {
+        path: '/question',
+        route: Question_Routes
     }
 ]
 

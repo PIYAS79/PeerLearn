@@ -7,6 +7,7 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
 export default {
     port_number: process.env.PORT,
     hash_pass_salt_rounds: process.env.HASH_PASS_SALT_ROUNDS,
+    open_ai_api_key: process.env.OPENAI_API_KEY,
     // environment:process.env.ENVIRONMENT,
     jwt: {
         access_token_secret: process.env.ACCESS_T_SECRET,

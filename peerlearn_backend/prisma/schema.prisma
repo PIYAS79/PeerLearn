@@ -89,6 +89,7 @@ model Request {
   is_urgent      Boolean        @default(false)
   call_id        String?
   call_start_at  String?
+  ai_rating      Int?
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
 
@@ -98,15 +99,16 @@ model Request {
 }
 
 model Question_Stack {
-  id          String  @id @default(uuid())
-  request_id  String
-  request     Request @relation(fields: [request_id], references: [id])
-  question    String
-  opt_a       String
-  opt_b       String
-  opt_c       String
-  opt_d       String
-  correct_ans String
+  id              String  @id @default(uuid())
+  request_id      String
+  request         Request @relation(fields: [request_id], references: [id])
+  question        String
+  question_number Int     @default(0)
+  opt_a           String
+  opt_b           String
+  opt_c           String
+  opt_d           String
+  correct_ans     String
 
   @@map("question_stack")
 }
