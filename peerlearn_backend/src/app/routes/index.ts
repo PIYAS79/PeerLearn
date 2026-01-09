@@ -6,6 +6,7 @@ import { Academic_Routes } from '../module/ACADEMIC/academic.routes';
 import { Expertise_Routes } from '../module/EXPERTISE/expertise.routes';
 import { Request_Routes } from '../module/REQUEST/request.routes';
 import { Question_Routes } from '../module/QUESTION/question.routes';
+import { Review_Routes } from '../module/REVIEW/review.routes';
 
 const router = express.Router();
 
@@ -32,6 +33,9 @@ const final_routes = [
     }, {
         path: '/question',
         route: Question_Routes
+    }, {
+        path: '/review',
+        route: Review_Routes
     }
 ]
 

@@ -94,6 +94,7 @@ model Request {
   updated_at     DateTime       @updatedAt
 
   questionStacks Question_Stack[]
+  review         Review?
 
   @@map("requests")
 }
@@ -114,24 +115,32 @@ model Question_Stack {
 }
 
 model Review {
-  id             String           @id @default(uuid())
-  req_maker_id   String
-  req_maker      Person           @relation("ReviewMaker", fields: [req_maker_id], references: [id])
-  target_user_id String
-  target_user    Person           @relation("ReviewTargetUser", fields: [target_user_id], references: [id])
-  ai_rating      Int
-  human_rating   Int
-  title          String
-  details        String
-  course_title   Academic_Courses
-  course_code    String?
-  topic          String
+  id                String            @id @default(uuid())
+  req_maker_id      String
+  req_maker         Person            @relation("ReviewMaker", fields: [req_maker_id], references: [id])
+  target_user_id    String
+  target_user       Person            @relation("ReviewTargetUser", fields: [target_user_id], references: [id])
+  request_id        String            @unique
+  request           Request           @relation(fields: [request_id], references: [id])
+  ai_rating         Int
+  human_rating      Int
+  teaching_category Teaching_Category
+  details           String
+  course_title      Academic_Courses
+  course_code       String?
+  topic             String
 
   @@map("reviews")
 }
 
 enum Review_Status {
   PENDING
+}
+
+enum Teaching_Category {
+  BELOW_AVERAGE
+  AVERAGE
+  EXCELLENT
 }
 
 enum Request_Status {
