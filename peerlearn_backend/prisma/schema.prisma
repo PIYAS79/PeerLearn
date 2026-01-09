@@ -81,13 +81,14 @@ model Request {
   id             String         @id @default(uuid())
   req_maker_id   String
   req_maker      Person         @relation("RequestMaker", fields: [req_maker_id], references: [id])
-  target_user_id String
-  target_user    Person         @relation("TargetUser", fields: [target_user_id], references: [id])
+  target_user_id String?
+  target_user    Person?        @relation("TargetUser", fields: [target_user_id], references: [id])
   title          String
   message        String
   status         Request_Status @default(PENDING)
   is_urgent      Boolean        @default(false)
   call_id        String?
+  call_start_at  String?
   created_at     DateTime       @default(now())
   updated_at     DateTime       @updatedAt
 

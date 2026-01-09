@@ -1,7 +1,7 @@
 import config from "../../config/index.js";
 import nodemailer from 'nodemailer'
 
-const Send_Email = async (email:string,html:string) => {
+const Send_Email = async (email: string, html: string, subject?: string) => {
 
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -17,7 +17,7 @@ const Send_Email = async (email:string,html:string) => {
     const info = await transporter.sendMail({
         from: '"PeerLearn" <__email__>',
         to: email,
-        subject: "Reset Password Link",
+        subject: subject || "Reset Password Link",
         // text: "Hello world?", // plain‑text body
         html, // HTML body
     });
