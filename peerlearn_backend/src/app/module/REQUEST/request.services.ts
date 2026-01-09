@@ -162,13 +162,6 @@ const update_status = async (request_id: string, data: Update_Request_Status_Typ
         if (!target_user) {
             throw new Final_App_Error(httpStatus.NOT_FOUND, "Target user not found")
         }
-        // check if the same user is create another request or not 
-        const { success, time } = await Reqeustf_Overload(req_maker.id, target_user.id);
-        if (success) {
-            throw new Final_App_Error(httpStatus.BAD_REQUEST,
-                `You must wait ${time} more minutes before sending another request`
-            );
-        }
         let call_id = uuidv4();
 
         await prisma.$transaction(async (tc) => {
