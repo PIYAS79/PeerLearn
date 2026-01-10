@@ -40,10 +40,10 @@ const create_request = async (data: Create_Request_Type) => {
             new_request = await tc.request.create({
                 data: {
                     req_maker_id: data.req_maker_id,
-                    target_user_id: data.target_user_id,
+                    target_user_id: data.target_user_id as string,
                     title: data.title,
                     message: data.message,
-                    is_urgent: data.is_urgent ?? false
+                    is_urgent: data.is_urgent ?? false,
                 }
             });
             await Send_Email(target_user.email, `
@@ -172,7 +172,7 @@ const update_status = async (request_id: string, data: Update_Request_Status_Typ
                 },
                 data: {
                     status: Request_Status.ACCEPTED,
-                    target_user_id: data.target_user_id,
+                    target_user_id: data.target_user_id as string,
                     call_id: call_id || '',
                     call_start_at: data.call_start_at || '',
                     message: data.message || `Your call start at ${data.call_start_at}`

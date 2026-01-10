@@ -79,7 +79,11 @@ const get_person_by_id = async (id: string) => {
         where: { id },
         include: {
             academicInfo: true,
-            expertises: true
+            expertises: true,
+            as_req_maker:true,
+            as_review_maker:true,
+            as_review_target_user:true,
+            as_target_user:true
         }
     })
     return person_data;
