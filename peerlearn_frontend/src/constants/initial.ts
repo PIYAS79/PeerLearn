@@ -66,3 +66,73 @@ export const INITIAL_POSTS: Post[] = [
     status: 'open'
   }
 ];
+
+
+export interface Tutor {
+  id: string;
+  name: string;
+  avatar: string;
+  major: string;
+  year: string;
+  institute: string;
+  expertise: string[];
+  rating: number;
+  reviewsCount: number;
+  isOnline: boolean;
+  bio: string;
+}
+
+export const MOCK_TUTORS: Tutor[] = [
+  {
+    id: 't1',
+    name: 'Dr. Sarah Jenkins',
+    avatar: 'https://picsum.photos/seed/tutor1/200/200',
+    major: 'Computer Science',
+    year: '2020-2024',
+    institute: 'Daffodil International University',
+    expertise: ['Data Structures', 'Algorithms', 'React Native'],
+    rating: 4.9,
+    reviewsCount: 128,
+    isOnline: true,
+    bio: 'Passionate about teaching complex algorithms in a simple way. I have helped over 500 students ace their CS finals.'
+  },
+  {
+    id: 't2',
+    name: 'James Wilson',
+    avatar: 'https://picsum.photos/seed/tutor2/200/200',
+    major: 'Mathematics',
+    year: '2021-2025',
+    institute: 'MIT',
+    expertise: ['Calculus', 'Linear Algebra', 'Statistics'],
+    rating: 4.7,
+    reviewsCount: 85,
+    isOnline: false,
+    bio: 'Math doesn\'t have to be scary. Let\'s break down those triple integrals together.'
+  },
+  {
+    id: 't3',
+    name: 'Elena Rodriguez',
+    avatar: 'https://picsum.photos/seed/tutor3/200/200',
+    major: 'Physics',
+    year: '2022-2026',
+    institute: 'Stanford University',
+    expertise: ['Quantum Mechanics', 'Thermodynamics', 'Optics'],
+    rating: 4.8,
+    reviewsCount: 64,
+    isOnline: true,
+    bio: 'Specializing in quantum theory and particle physics. I love making abstract concepts tangible.'
+  },
+  {
+    id: 't4',
+    name: 'Michael Chen',
+    avatar: 'https://picsum.photos/seed/tutor4/200/200',
+    major: 'Software Engineering',
+    year: '2019-2023',
+    institute: 'Daffodil International University',
+    expertise: ['System Design', 'Node.js', 'PostgreSQL'],
+    rating: 4.5,
+    reviewsCount: 210,
+    isOnline: true,
+    bio: 'Full-stack developer with 4 years of tutoring experience. Practical coding is my focus.'
+  }
+];

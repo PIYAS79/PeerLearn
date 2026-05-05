@@ -184,7 +184,7 @@ const Timeline_Page = () => {
 
           <div className="flex items-center gap-4 shrink-0">
             <Link
-              href="/tutors"
+              href="/tutor"
               className="px-4 py-2 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 rounded-xl text-xs font-bold transition-all border border-indigo-500/20 flex items-center gap-2"
             >
               <Users className="w-4 h-4" />
