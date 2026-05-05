@@ -8,6 +8,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "target": "ES2023",
     "esModuleInterop": true,
     // For nodejs:
