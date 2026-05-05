@@ -24,6 +24,10 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
     })
 })
 
+
+// a socket sever will added here;
+const socekt = 0;
+
 // Handle Not Found Routes
 app.use(Route_Not_Found_Error);
 
