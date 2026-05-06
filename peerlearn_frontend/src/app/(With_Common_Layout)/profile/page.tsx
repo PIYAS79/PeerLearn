@@ -1,4 +1,6 @@
+import Left_Col from '@/components/UI/Profile_Page/Left_Col';
 import { Calendar, CheckCircle2, Clock, MessageSquare, Star } from 'lucide-react'
+
 
 const receivedRequests: any = [
     { id: '3', topic: 'Intro to Python', status: 'pending', date: 'Oct 14', otherParty: 'Emma Watson' }
@@ -31,19 +33,9 @@ const Profile_Page = () => {
 
 
 
-
-
     return (
         <div className=' bg-slate-950 clear-start flex justify-between min-h-screen'>
-            <div className='border-r min-w-[350px] '>
-                <div className="avatar w-full justify-center mt-8">
-                    <div className="w-[50%] border-2 border-green-500 rounded-full">
-                        <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
-                    </div>
-                </div>
-                <h3 className="text-xl font-bold text-center mt-4">S M Piyas Mahamude Alif</h3>
-                <p className="text-center text-gray-500">Software Engineer</p>
-            </div>
+            <Left_Col />
             <div className=' flex-1'>
                 {/* Right Column: Requests, Reviews, Sessions */}
                 <div className="lg:col-span-8 space-y-8 max-w-5xl m-auto ">

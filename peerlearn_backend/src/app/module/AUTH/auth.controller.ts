@@ -9,7 +9,7 @@ const user_login = Async_Catch(async (req: Request, res: Response) => {
     const result = await Auth_Services.user_login(req.body);
     res.cookie('ref_token', result.refresh_token, {
         secure: false,
-        httpOnly: true
+        httpOnly: true,
     })
     res.status(httpStatus.OK).json({
         success: true,

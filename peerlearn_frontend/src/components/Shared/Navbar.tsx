@@ -1,7 +1,10 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import dynamic from 'next/dynamic';
 
 const Navbar = () => {
+    const AuthButton = dynamic(() => import('./AuthButton'), { ssr: false })
+
     return (
         <div className="navbar custom-glass">
             <div className="navbar-start      ">
@@ -32,9 +35,7 @@ const Navbar = () => {
                     <Link href={'/tutor'}><li>Tutors</li></Link>
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Button</a>
-            </div>
+            <AuthButton />
         </div>
     )
 }
