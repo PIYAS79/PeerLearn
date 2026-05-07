@@ -1,8 +1,8 @@
 'use client';
 import Timeline_Card from '@/components/UI/Timeline_Page/Card';
-import useUserInfo from '@/hooks/userUserInfo';
-import { useGetAllRequestQuery } from '@/redux/api/requestApi';
+import { useCreateRequestMutation, useGetAllRequestQuery } from '@/redux/api/requestApi';
 import { Request_Data_Type } from '@/types';
+import { getFromLocalStorage } from '@/utils/local-storage';
 import {
   Plus,
   Search,
@@ -11,20 +11,31 @@ import {
   Users,
 } from 'lucide-react';
 import Link from 'next/link';
-import { use, useState } from 'react';
+import { useState } from 'react';
 
 const Timeline_Page = () => {
-  const dd = useUserInfo();
-  console.log(dd);
-    const {data,isLoading} = useGetAllRequestQuery({});
-    console.log(data);
+  const { data, isLoading } = useGetAllRequestQuery({});
+  const [createRequest] = useCreateRequestMutation();
 
   const categories = ['All', 'Physics', 'Mathematics', 'Computer Science', 'Biology', 'Chemistry', 'Engineering'];
 
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const handleCreatePost = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const [newRequest, setNewRequest] = useState({
+    title: "",
+    message: "",
+    req_maker_id: "",
+    is_urgent: false,
+  });
+
+
+  const handleCreatePost = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    newRequest.req_maker_id = getFromLocalStorage('person_id') || '';
+    console.log(newRequest);
+    const res = await createRequest(newRequest);
+    console.log(res);
     setIsCreateModalOpen(false);
   }
 
@@ -33,66 +44,8 @@ const Timeline_Page = () => {
 
   return (
     <div className='bg-slate-950 min-h-screen text-white'>
-      {/* header */}
-      <header className="navbar bg-base-100 shadow-sm px-10">
-        <div className="flex items-center gap-3 mr-auto">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
-              <GraduationCap className="text-white w-6 h-6" />
-            </div>
-            <span className="text-xl font-bold tracking-tight font-display">PeerLearn</span>
-          </Link>
-          <div className="h-6 w-px bg-white/10 mx-2 hidden md:block" />
-          <h1 className="text-lg font-semibold text-slate-300 hidden md:block">Timeline</h1>
-        </div>
-        <div className="flex gap-2">
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <div className="relative flex-1 md:w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-              <input
-                type="text"
-                placeholder="Search topics..."
-                // value={searchQuery}
-                // onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-10 pr-4 outline-none focus:border-indigo-500/50 transition-all text-sm"
-              />
-            </div>
-            <button
-              onClick={() => setIsCreateModalOpen(true)}
-              className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 md:px-4 md:py-2 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-indigo-500/20 shrink-0"
-            >
-              <Plus className="w-5 h-5" />
-              <span className="hidden md:inline font-semibold text-sm">Create Post</span>
-            </button>
-          </div>
 
 
-
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-              </div>
-            </div>
-            <ul
-              tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-      <hr />
-      {/* header */}
 
       {/* Modal start */}
       {isCreateModalOpen && (
@@ -121,32 +74,14 @@ const Timeline_Page = () => {
 
             <form onSubmit={handleCreatePost} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Topic / Subject</label>
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Title Here</label>
                 <input
                   name="topic"
+                  onChange={(e) =>
+                    setNewRequest({ ...newRequest, title: e.target.value })
+                  }
                   required
                   placeholder="e.g. Linear Algebra - Eigenvectors"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:text-slate-600 text-sm"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Category</label>
-                <select
-                  name="category"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all text-slate-200 text-sm"
-                >
-                  {categories.filter(c => c !== 'All').map(cat => (
-                    <option key={cat} value={cat} className="bg-slate-900">{cat}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Image URL (Optional)</label>
-                <input
-                  name="image"
-                  placeholder="https://example.com/image.jpg"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 px-4 outline-none focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all placeholder:text-slate-600 text-sm"
                 />
               </div>
@@ -155,6 +90,9 @@ const Timeline_Page = () => {
                 <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Description</label>
                 <textarea
                   name="description"
+                  onChange={(e) =>
+                    setNewRequest({ ...newRequest, message: e.target.value })
+                  }
                   required
                   rows={3}
                   placeholder="Explain what you're struggling with..."
@@ -172,8 +110,8 @@ const Timeline_Page = () => {
       {/* Model end */}
       {/* filter line */}
       <div className="max-w-7xl mx-auto px-0 py-8">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 w-full no-scrollbar">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8 ">
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 w-full no-scrollbar ">
             {categories.map(cat => (
               <button
                 key={cat}
@@ -196,6 +134,13 @@ const Timeline_Page = () => {
               <Users className="w-4 h-4" />
               Find Tutor
             </Link>
+            <button
+              onClick={() => setIsCreateModalOpen(true)}
+              className="bg-indigo-600 hover:bg-indigo-500 text-white p-2 md:px-4 md:py-2 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-indigo-500/20 shrink-0"
+            >
+              <Plus className="w-4 h-4" />
+              <span className="hidden md:inline font-semibold text-xs">Create Post</span>
+            </button>
           </div>
         </div>
         {/* Filter Line end */}
@@ -205,7 +150,7 @@ const Timeline_Page = () => {
             <p>Loading...</p>
           ) : (
             data?.map((one: Request_Data_Type) => (
-              <Timeline_Card key={one.id}  props={one}/>
+              <Timeline_Card key={one.id} props={one} />
             ))
           )}
         </div>

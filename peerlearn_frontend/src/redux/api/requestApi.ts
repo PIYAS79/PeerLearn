@@ -1,6 +1,6 @@
 import { baseApi } from './baseApi';
 import { tagTypes } from '../tag-types';
-import { Get_All_Request_Response_Type, Request_Data_Type } from '@/types';
+import { Get_All_Request_Response_Type } from '@/types';
 
 export const requestApi = baseApi.injectEndpoints({
     overrideExisting: true,
@@ -13,14 +13,25 @@ export const requestApi = baseApi.injectEndpoints({
                 params: arg,
             }),
             transformResponse: (response: Get_All_Request_Response_Type) => {
-                console.log(response);
                 return response?.data;
             },
             providesTags: [tagTypes.request],
-        })
+        }),
+        createRequest: build.mutation({
+            query: (arg: Record<string, any>) => {
+                console.log(arg);
+                return ({
+                    url: '/request',
+                    method: 'POST',
+                    data: arg,
+                })
+            },
+            invalidatesTags: [tagTypes.request],
+        }),
     }),
 });
 
 export const {
-    useGetAllRequestQuery
+    useGetAllRequestQuery,
+    useCreateRequestMutation
 } = requestApi;

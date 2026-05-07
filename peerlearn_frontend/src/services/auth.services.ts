@@ -25,6 +25,7 @@ export const is_Log_in = () => {
 
 export const removeUserInfo = () => {
     return removeFromLocalStorage(authKey);
+    
 }
 
 export const getNewAccessToken = async () => {

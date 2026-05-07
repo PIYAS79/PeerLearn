@@ -1,6 +1,7 @@
 "use client";
 
 import { Request_Data_Type } from '@/types';
+import { getFromLocalStorage } from '@/utils/local-storage';
 import {
     Edit3,
     Trash2,
@@ -11,6 +12,7 @@ import {
 import { useState } from 'react';
 
 const Timeline_Card = (props: { props: Request_Data_Type }) => {
+    const my_id = getFromLocalStorage('person_id');
 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
@@ -28,12 +30,12 @@ const Timeline_Card = (props: { props: Request_Data_Type }) => {
 
                         <div className='pl-2 mr-auto flex flex-col justify-center'>
                             <h6 className='text-md font-bold'>
-                                {props.props.req_maker.first_name}{" "}
-                                {props.props.req_maker.last_name}
+                                {props.props.req_maker?.first_name}{" "}
+                                {props.props.req_maker?.last_name}
                             </h6>
 
                             <p className='text-[10px] font-bold text-indigo-400 hover:text-indigo-300 uppercase tracking-wider'>
-                                {props.props.req_maker.academicInfo.department}
+                                {props.props.req_maker?.academicInfo?.department}
                             </p>
                         </div>
 
@@ -63,10 +65,17 @@ const Timeline_Card = (props: { props: Request_Data_Type }) => {
                     </div>
 
                     <div className='mt-2'>
-                        <button className='w-full cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
-                            <Zap className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
-                            Accept Request
-                        </button>
+                        {my_id !== props.props.req_maker_id ?
+                            <button className='w-full cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
+                                <Zap className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
+                                Accept Request
+                            </button> :
+                            <button className='w-full cursor-pointer bg-orange-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
+                                <Zap className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
+                                My Request
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>

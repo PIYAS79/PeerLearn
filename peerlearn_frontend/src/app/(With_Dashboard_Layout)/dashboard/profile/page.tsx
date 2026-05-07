@@ -2,13 +2,16 @@
 import Right_Col from '@/components/UI/Profile_Page/Right_Col'
 import { useGetMeQuery } from '@/redux/api/personApi'
 import { get_User_Info } from '@/services/auth.services'
+import { setToLocalStorage } from '@/utils/local-storage'
 import { Avatar, Col, Row } from 'antd'
 
 const Profile_Page = () => {
   const user = get_User_Info()
   const user_email = (user as { email?: string } | null)?.email || ''
   const { data, isLoading } = useGetMeQuery({ email: user_email })
-  console.log(data);
+  if(data?.id){
+    setToLocalStorage('person_id', data.id);
+  }
   return (
     <Row>
       {/* Right */}
