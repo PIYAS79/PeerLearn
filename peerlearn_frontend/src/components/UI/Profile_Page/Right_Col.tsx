@@ -1,4 +1,4 @@
-import Left_Col from '@/components/UI/Profile_Page/Left_Col';
+
 import { Calendar, CheckCircle2, Clock, MessageSquare, Star } from 'lucide-react'
 
 
@@ -25,23 +25,13 @@ const tutorSessions: any = [
     { id: '2', topic: 'Web Development', time: '02:00 PM', date: 'Monday', otherParty: 'John Doe' }
 ];
 
-const Profile_Page = () => {
-
-    const isTutor = true; // This would come from user data in a real app
-
-
-
-
-
-    return (
-        <div className=' bg-slate-950 clear-start flex justify-between min-h-screen'>
-            <Left_Col />
-            <div className=' flex-1'>
-                {/* Right Column: Requests, Reviews, Sessions */}
-                <div className="lg:col-span-8 space-y-8 max-w-5xl m-auto ">
+const Right_Col = () => {
+    const isTutor = true; // This would typically come from user data or context
+  return (
+    <div className="lg:col-span-8 space-y-8 max-w-5xl m-auto ">
 
                     {/* View Requests Section */}
-                    <section className='mt-8'>
+                    <section className=''>
                         <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
                             <MessageSquare className="w-6 h-6 text-indigo-400" />
                             View Requests
@@ -180,9 +170,7 @@ const Profile_Page = () => {
                     </section>
 
                 </div>
-            </div>
-        </div>
-    )
+  )
 }
 
-export default Profile_Page
+export default Right_Col

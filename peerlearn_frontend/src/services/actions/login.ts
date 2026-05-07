@@ -21,7 +21,7 @@ export const userLogin = async (data: any) => {
 
     if (userInfo?.data?.access_token) {
         setAccessToken(userInfo?.data?.access_token, {
-            redirect: '/profile',
+            redirect: '/dashboard/profile',
         });
     }
 

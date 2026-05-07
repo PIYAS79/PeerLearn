@@ -26,15 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Providers>
-      <html
-        lang="en"
-        className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
-        <body className="min-h-full flex flex-col">
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <Providers>
           {children}
           <Toaster position="top-right" richColors />
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }

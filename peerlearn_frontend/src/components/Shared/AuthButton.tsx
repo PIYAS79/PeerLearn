@@ -19,7 +19,7 @@ const AuthButton = () => {
         <>
             {userInfo ?
                 <div className='flex justify-center '>
-                    <button onClick={handleLogout} className='btn bg-red-500 btn-error'>Logout</button>
+                    <button onClick={handleLogout} className='btn bg-red-600 w-full mt-3 rounded-lg'>Logout</button>
                 </div> :
                 <div className='flex justify-center'>
                     <Link href={'/login'}>

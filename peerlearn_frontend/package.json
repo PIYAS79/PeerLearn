@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
+    "antd": "^6.3.7",
     "axios": "^1.16.0",
     "daisyui": "^5.5.19",
     "jwt-decode": "^4.0.0",
