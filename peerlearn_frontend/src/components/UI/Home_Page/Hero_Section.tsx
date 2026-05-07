@@ -43,6 +43,7 @@ const Hero_Section = () => {
                     <div key={i} className="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 overflow-hidden relative">
                       <Image
                         src={`https://picsum.photos/seed/student${i}/100/100`}
+                        sizes=''
                         alt="Student"
                         fill
                         className="object-cover"

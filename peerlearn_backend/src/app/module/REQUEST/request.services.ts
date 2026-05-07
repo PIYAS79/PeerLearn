@@ -126,6 +126,21 @@ const get_all_requests = async () => {
         where: {
             status: Request_Status.PENDING
         },
+        include: {
+            req_maker: {
+                select: {
+                    first_name: true,
+                    academicInfo: {
+                        select: {
+                            department: true,
+                        }
+                    },
+                    last_name: true,
+                    photo_url: true,
+                    email: true
+                }
+            }
+        },
         orderBy: [
             { is_urgent: 'desc' },
             { created_at: 'desc' },

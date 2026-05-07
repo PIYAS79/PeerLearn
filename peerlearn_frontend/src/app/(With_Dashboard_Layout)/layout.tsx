@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 
 
 const Dashboard_Layout = ({ children }: { children: React.ReactNode }) => {
-    const isLoggedIn =true; // Replace with actual authentication logic, e.g., using a context or a hook to check if the user is logged in
+    const isLoggedIn =is_Log_in();
     const router = useRouter();
     const [mounted, setMounted] = React.useState(false);
 

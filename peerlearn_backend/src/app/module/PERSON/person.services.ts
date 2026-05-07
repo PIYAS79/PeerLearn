@@ -74,16 +74,36 @@ const get_all_person = async (params: Person_Query_Type, pagination: Pagination_
     };
 }
 
-const get_person_by_id = async (id: string) => {
+const get_person_by_email = async (email: string) => {
     const person_data = await prisma.person.findUnique({
-        where: { id },
+        where: { email },
         include: {
             academicInfo: true,
             expertises: true,
-            as_req_maker:true,
-            as_review_maker:true,
-            as_review_target_user:true,
-            as_target_user:true
+            as_req_maker: {
+                include: {
+                    target_user: {
+                        select: {
+                            first_name: true,
+                            last_name: true,
+                            photo_url: true,
+                        }
+                    }
+                }
+            },
+            as_review_maker: true,
+            as_review_target_user: true,
+            as_target_user: {
+                include: {
+                    req_maker: {
+                        select: {
+                            first_name: true,
+                            last_name: true,
+                            photo_url: true,
+                        }
+                    }
+                }
+            }
         }
     })
     return person_data;
@@ -92,5 +112,5 @@ const get_person_by_id = async (id: string) => {
 export const Person_Services = {
     update_person,
     get_all_person,
-    get_person_by_id
+    get_person_by_email
 }

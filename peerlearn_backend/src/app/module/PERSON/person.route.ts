@@ -16,8 +16,8 @@ router.get('/',
     Person_Controller.get_all_person
 );
 
-router.get('/:id',
-    Person_Controller.get_person_by_id
+router.get('/:email',
+    Person_Controller.get_person_by_email
 );
 
 
