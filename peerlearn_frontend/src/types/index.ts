@@ -46,6 +46,11 @@ export type Request_Data_Type = {
     academicInfo: {
       department: string;
     };
+  },
+  target_user?: {
+    first_name: string;
+    last_name: string;
+    photo_url: string | null;
   };
 };
 export type Get_All_Request_Response_Type = {

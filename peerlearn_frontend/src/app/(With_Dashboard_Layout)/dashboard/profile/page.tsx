@@ -27,12 +27,12 @@ const Profile_Page = () => {
       <Col span={6} pull={18}>
         <Avatar size={250} src={data?.photo_url || 'https://i.pinimg.com/736x/9e/7b/04/9e7b041059f24da6fdf9182dcd7fe28f.jpg'} />
         <div className='mt-5'>
-          <h4>Name : {data?.first_name} {data?.last_name}</h4>
-          <h4>{data?.academicInfo?.university}</h4>
-          <h4>Level: {data?.academicInfo?.level ? data?.academicInfo?.level : 'NULL'} | Term: {data?.academicInfo?.term ? data?.academicInfo?.term : 'NULL'}</h4>
-          <h4>Department : {data?.academicInfo?.department ? data?.academicInfo?.department : 'Not specified'}</h4>
-          {/* <h4>ID : {data?.academicInfo?.student_id}</h4> */}
-          <h4>Expertises: </h4>
+          <h4><span className='font-bold text-indigo-400'>Name :</span> {data?.first_name} {data?.last_name}</h4>
+          <h4><span className='font-bold text-indigo-400'>University :</span> {data?.academicInfo?.university}</h4>
+          <h4><span className='font-bold text-indigo-400'>Level :</span> {data?.academicInfo?.level ? data?.academicInfo?.level : 'NULL'} | <span className='font-bold'>Term :</span> {data?.academicInfo?.term ? data?.academicInfo?.term : 'NULL'}</h4>
+          <h4><span className='font-bold text-indigo-400'>Department :</span> {data?.academicInfo?.department ? data?.academicInfo?.department : 'Not specified'}</h4>
+          <h4><span className='font-bold text-indigo-400'>ID :</span> {data?.academicInfo?.student_id}</h4>
+          <h4><span className='font-bold text-indigo-400'>Expertises :</span></h4>
           <div className='mt-2 gap-2'>
             {data?.expertises.length ? data.expertises.map((expertise) => (
               <span key={expertise?.id}

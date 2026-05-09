@@ -89,15 +89,54 @@ const update_request = async (request_id: string, data: Update_Request_Type) => 
 };
 
 const get_requests_as_request_maker = async (req_maker_id: string) => {
+    console.log("HIT");
     const requests = await prisma.request.findMany({
-        where: { req_maker_id }
+        where: { req_maker_id },
+        include: {
+            target_user: {
+                select: {
+                    first_name: true,
+                    academicInfo: {
+                        select: {
+                            department: true,
+                        }
+                    },
+                    last_name: true,
+                    photo_url: true,
+                    email: true
+                }
+            }
+        },
+        orderBy: [
+            { created_at: 'desc' },
+            { updated_at: 'desc' },
+        ]
     });
     return requests;
 }
 
 const get_requests_as_target_user = async (target_user_id: string) => {
     const requests = await prisma.request.findMany({
-        where: { target_user_id }
+        where: { target_user_id },
+        include: {
+            req_maker: {
+                select: {
+                    first_name: true,
+                    academicInfo: {
+                        select: {
+                            department: true,
+                        }
+                    },
+                    last_name: true,
+                    photo_url: true,
+                    email: true
+                }
+            }
+        },
+        orderBy: [
+            { created_at: 'desc' },
+            { updated_at: 'desc' },
+        ]
     });
     return requests;
 }

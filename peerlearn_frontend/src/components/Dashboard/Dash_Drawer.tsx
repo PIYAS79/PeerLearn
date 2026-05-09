@@ -1,7 +1,6 @@
 import React from 'react';
-import { HomeOutlined, StarFilled, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { HomeOutlined, SettingOutlined, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
-import { Upload } from 'lucide-react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
@@ -53,6 +52,15 @@ const items = [
             </Link>
         ),
     },
+    {
+        key: '6',
+        icon: React.createElement(SettingOutlined),
+        label: (
+            <Link href="/setting">
+                Settings
+            </Link>
+        ),
+    },
 ];
 
 interface DashDrawerProps {
@@ -87,9 +95,8 @@ const Dash_Drawer: React.FC<DashDrawerProps> = ({ children }) => {
                 <Header style={{ padding: 0, color: 'white', textAlign: 'center' }}>Welcome to Dashboard</Header>
                 <Content className='bg-slate-950 text-slate-50 antialiased selection:bg-indigo-500/30 w-full '>
                     <div
-                        className=' text-slate-50'
+                        className=' text-slate-50 p-10'
                         style={{
-                            padding: 24,
                             //   minHeight: 360,
                             borderRadius: borderRadiusLG,
                         }}

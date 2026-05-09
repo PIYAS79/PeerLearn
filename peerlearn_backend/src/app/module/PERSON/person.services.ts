@@ -58,6 +58,19 @@ const get_all_person = async (params: Person_Query_Type, pagination: Pagination_
         where: where_conditions,
         skip,
         take: limit,
+        include: {
+            academicInfo: {
+                select: {
+                    department: true,
+                }
+            },
+            expertises: {
+                select: {
+                    topic: true,
+                    level: true
+                }
+            }
+        },
         orderBy: pagination.sortBy && pagination.sortOrder ? {
             [pagination.sortBy]: pagination.sortOrder
         } : {

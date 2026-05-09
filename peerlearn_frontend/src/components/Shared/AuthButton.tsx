@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 const AuthButton = () => {
 
     const userInfo = get_User_Info();
-    console.log(userInfo);
     const router = useRouter();
 
     const handleLogout = () => {

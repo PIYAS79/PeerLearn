@@ -7,11 +7,14 @@ import {
     Trash2,
     Clock,
     Zap,
-    X
+    X,
+    Search,
+    User
 } from 'lucide-react';
 import { useState } from 'react';
+import Accept_Req_Button from './Accept_Req_Button';
 
-const Timeline_Card = (props: { props: Request_Data_Type }) => {
+const Timeline_Card = (props: { props: Request_Data_Type; from_dashboard?: boolean }) => {
     const my_id = getFromLocalStorage('person_id');
 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -20,10 +23,8 @@ const Timeline_Card = (props: { props: Request_Data_Type }) => {
         <>
             {/* Card */}
             <div
-                className=''
-                onClick={() => setIsCreateModalOpen(true)}
-            >
-                <div className='custom-glass p-3 rounded-xl'>
+                className=''>
+                <div className='bg-white/5 border border-white/5 p-3 rounded-xl'>
                     <div className='flex'>
                         <div className="w-12 aspect-square bg-indigo-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
                         </div>
@@ -39,14 +40,16 @@ const Timeline_Card = (props: { props: Request_Data_Type }) => {
                             </p>
                         </div>
 
-                        <div className='flex items-center gap-4'>
-                            <Edit3 className='w-4 cursor-pointer' />
-                            <Trash2 className='w-4 cursor-pointer' />
-                        </div>
+                        {my_id === props.props.req_maker_id &&
+                            <div className='flex items-center gap-4'>
+                                <Edit3 className='w-4 cursor-pointer' />
+                                <Trash2 className='w-4 cursor-pointer' />
+                            </div>
+                        }
                     </div>
 
                     <div className='mt-2'>
-                        <h3 className="text-lg min-h-20 font-bold text-slate-100 mb-2 leading-tight group-hover:text-indigo-400 transition-colors">
+                        <h3 className="text-sm min-h-10 font-bold text-slate-100 mb-2 leading-tight group-hover:text-indigo-400 transition-colors">
                             {props.props.title}
                         </h3>
 
@@ -66,14 +69,21 @@ const Timeline_Card = (props: { props: Request_Data_Type }) => {
 
                     <div className='mt-2'>
                         {my_id !== props.props.req_maker_id ?
-                            <button className='w-full cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
-                                <Zap className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
-                                Accept Request
-                            </button> :
-                            <button className='w-full cursor-pointer bg-orange-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
-                                <Zap className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
-                                My Request
+                            <div className={`grid ${props?.from_dashboard ? "" : "grid-cols-2 gap-2"}`}>
+                                <Accept_Req_Button request_id={props?.props?.id} from_dashboard={props?.from_dashboard} />
+                                <button onClick={() => setIsCreateModalOpen(true)}
+                                    className='w-full cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
+                                    <Search className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
+                                    View Details
+                                </button>
+                            </div>
+                            :
+                            <button onClick={() => setIsCreateModalOpen(true)}
+                                className='w-full cursor-pointer bg-indigo-600 hover:bg-indigo-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-500/10 group/btn'>
+                                <Search className='w-4 h-4 group-hover/btn:scale-125 transition-transform' />
+                                View Details
                             </button>
+
                         }
 
                     </div>
