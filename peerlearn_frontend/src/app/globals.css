@@ -24,6 +24,12 @@
   @apply bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400;
 }
 
+.custom-dark-modal .ant-modal-content {
+  background: #0f172a !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 24px !important;
+}
 
 /* :root {
   --background: #ffffff;

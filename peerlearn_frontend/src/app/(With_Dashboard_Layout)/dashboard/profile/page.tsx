@@ -13,7 +13,7 @@ const Profile_Page = () => {
     setToLocalStorage('person_id', data.id);
   }
   return (
-    <Row>
+    <Row className=''>
       {/* Right */}
       <Col span={18} push={6}>
         {

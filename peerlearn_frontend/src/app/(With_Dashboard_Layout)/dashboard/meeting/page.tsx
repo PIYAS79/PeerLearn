@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import io from 'socket.io-client';
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 
 
 const socket = io('https://peerlearn-socket-server.onrender.com', {
@@ -18,8 +18,12 @@ export default function Meeting_Page() {
   const peerRef = useRef<RTCPeerConnection | null>(null);
 
   const [isCallActive, setIsCallActive] = useState(false);
-  const params = useParams();
-  const roomId = params.call_id as string;
+  const searchParams = useSearchParams();
+
+  const call_id = searchParams.get('call_id');
+
+  console.log(call_id);
+  const roomId = call_id as string;
 
   const startCall = async () => {
     console.log('Starting call...');

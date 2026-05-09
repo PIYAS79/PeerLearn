@@ -59,7 +59,7 @@ export const requestApi = baseApi.injectEndpoints({
                     data: arg,
                 })
             },
-            invalidatesTags: [tagTypes.request],
+            invalidatesTags: [tagTypes.request,tagTypes.person],
         }),
     }),
 });

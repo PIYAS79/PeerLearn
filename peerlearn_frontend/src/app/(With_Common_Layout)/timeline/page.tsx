@@ -39,7 +39,7 @@ const Timeline_Page = () => {
     setIsCreateModalOpen(false);
   }
 
-
+console.log(data);
 
 
   return (
@@ -149,7 +149,7 @@ const Timeline_Page = () => {
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            data?.map((one: Request_Data_Type) => (
+            data?.filter((one)=>(one.target_user_id===null))?.map((one: Request_Data_Type) => (
               <Timeline_Card key={one.id} props={one} />
             ))
           )}

@@ -1,5 +1,7 @@
 import { Person_Data_Type } from '@/types';
-import { Calendar, CheckCircle2, Clock, MessageSquare, Star } from 'lucide-react'
+import { Calendar, Clock, MessageSquare, Star } from 'lucide-react'
+import Action_Btn from './Acion_Btn';
+import Link from 'next/link';
 
 
 const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
@@ -53,7 +55,7 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                     <div className={`custom-glass rounded-3xl p-6 border-white/5 transition-opacity ${!isTutor ? 'opacity-40 grayscale pointer-events-none' : ''}`}>
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Received as Tutor</p>
                         <div className="space-y-4">
-                            {p_data.p_data?.as_target_user?.slice(0, 2)?.map((one: any) => (
+                            {p_data.p_data?.as_target_user?.filter(one => one.status === 'PENDING')?.slice(0, 2)?.map((one: any) => (
                                 <div key={one.id} className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
                                     <div>
                                         <h4 className="text-sm font-bold mb-1">{one.title}</h4>
@@ -78,9 +80,10 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                                     >
                                         {one.status}
                                     </span>
+                                    <Action_Btn request_id={one.id} status={one.status} />
                                 </div>
                             ))}
-                            {p_data.p_data?.as_target_user?.length === 0 && <p className="text-center text-slate-600 text-sm py-4">No requests yet</p>}
+                            {p_data.p_data?.as_target_user?.filter(one => one.status === 'PENDING').length === 0 && <p className="text-center text-slate-600 text-sm py-4">No pending requests yet</p>}
                         </div>
                     </div>
                 </div>
@@ -112,27 +115,30 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                                         const [date, time] = session.call_start_at.split(' at ');
 
                                         return (
-                                            <div
-                                                key={session.id}
-                                                className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 flex items-center gap-4"
-                                            >
-                                                <div className="w-14 h-14 rounded-xl bg-indigo-500/20 flex flex-col items-center justify-center text-indigo-400">
-                                                    <Clock className="w-4 h-4" />
+                                            <Link href={`/dashboard/meeting?call_id=${session.call_id}`} key={session.id} className='block'>
 
-                                                    <span className="text-[10px] font-bold mt-1">
-                                                        {time}
-                                                    </span>
+                                                <div
+                                                    key={session.id}
+                                                    className="p-4 rounded-2xl bg-indigo-500/5 border border-indigo-500/10 flex items-center gap-4"
+                                                >
+                                                    <div className="w-14 h-14 rounded-xl bg-indigo-500/20 flex flex-col items-center justify-center text-indigo-400">
+                                                        <Clock className="w-4 h-4" />
+
+                                                        <span className="text-[10px] font-bold mt-1">
+                                                            {time}
+                                                        </span>
+                                                    </div>
+
+                                                    <div>
+                                                        <h4 className="text-sm font-bold text-white">{session.title}</h4>
+
+                                                        <p className="text-[10px] text-slate-500">
+                                                            Tutor: {session.target_user.first_name}{' '}
+                                                            {session.target_user.last_name} • {date}
+                                                        </p>
+                                                    </div>
                                                 </div>
-
-                                                <div>
-                                                    <h4 className="text-sm font-bold">{session.title}</h4>
-
-                                                    <p className="text-[10px] text-slate-500">
-                                                        Tutor: {session.target_user.first_name}{' '}
-                                                        {session.target_user.last_name} • {date}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            </Link>
                                         );
                                     })
                             )}
@@ -155,27 +161,28 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                                         const [date, time] = session.call_start_at.split(' at ');
 
                                         return (
-                                            <div
-                                                key={session.id}
-                                                className="p-4 rounded-2xl bg-purple-500/5 border border-purple-500/10 flex items-center gap-4"
-                                            >
-                                                <div className="w-14 h-14 rounded-xl bg-purple-500/20 flex flex-col items-center justify-center text-purple-400">
-                                                    <Clock className="w-4 h-4" />
+                                            <Link href={`/dashboard/meeting?call_id=${session.call_id}`} key={session.id} className='block'>
+                                                <div
+                                                    className="p-4 gap-4 rounded-2xl bg-purple-500/5 border border-purple-500/10 flex items-center "
+                                                >
+                                                    <div className="w-14 h-14 rounded-xl bg-purple-500/20 flex flex-col items-center justify-center text-purple-400">
+                                                        <Clock className="w-4 h-4" />
 
-                                                    <span className="text-[10px] font-bold mt-1">
-                                                        {time}
-                                                    </span>
+                                                        <span className="text-[10px] font-bold mt-1">
+                                                            {time}
+                                                        </span>
+                                                    </div>
+
+                                                    <div>
+                                                        <h4 className="text-sm font-bold text-white">{session.title}</h4>
+
+                                                        <p className="text-[10px] text-slate-500">
+                                                            Student: {session.req_maker.first_name}{' '}
+                                                            {session.req_maker.last_name} - {date}
+                                                        </p>
+                                                    </div>
                                                 </div>
-
-                                                <div>
-                                                    <h4 className="text-sm font-bold">{session.title}</h4>
-
-                                                    <p className="text-[10px] text-slate-500">
-                                                        Student: {session.req_maker.first_name}{' '}
-                                                        {session.req_maker.last_name} - {date}
-                                                    </p>
-                                                </div>
-                                            </div>
+                                            </Link>
                                         );
                                     })
                             )}

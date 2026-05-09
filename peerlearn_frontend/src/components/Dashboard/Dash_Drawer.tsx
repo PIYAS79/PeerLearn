@@ -56,7 +56,7 @@ const items = [
         key: '6',
         icon: React.createElement(SettingOutlined),
         label: (
-            <Link href="/setting">
+            <Link href="/dashboard/setting">
                 Settings
             </Link>
         ),

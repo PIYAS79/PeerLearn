@@ -17,10 +17,19 @@ export const personApi = baseApi.injectEndpoints({
                 return response?.data;
             },
             providesTags: [tagTypes.person],
-        })
+        }),
+        updateMe: build.mutation({
+            query: (arg: Record<string, any>) => ({
+                url: `/person/${arg.id}`,
+                method: 'PATCH',
+                data: arg.data,
+            }),
+            invalidatesTags: [tagTypes.person],
+        }),
     }),
 });
 
 export const {
     useGetMeQuery,
+    useUpdateMeMutation,
 } = personApi;
