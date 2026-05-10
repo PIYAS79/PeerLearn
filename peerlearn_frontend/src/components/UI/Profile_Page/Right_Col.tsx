@@ -16,7 +16,7 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                     <MessageSquare className="w-6 h-6 text-indigo-400" />
                     View Recent Requests
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Sent Requests (Student) */}
                     <div className="custom-glass rounded-3xl p-6 border-white/5">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Sent as Student</p>
@@ -97,7 +97,7 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                     <Calendar className="w-6 h-6 text-indigo-400" />
                     Upcoming Sessions
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* As Student */}
                     <div className="custom-glass rounded-3xl p-6 border-white/5">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Me as Student</p>
