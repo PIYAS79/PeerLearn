@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import Accept_Req_Button from './Accept_Req_Button';
+import Image from 'next/image';
 
 const Timeline_Card = (props: { props: Request_Data_Type; from_dashboard?: boolean }) => {
     const my_id = getFromLocalStorage('person_id');
@@ -26,7 +27,13 @@ const Timeline_Card = (props: { props: Request_Data_Type; from_dashboard?: boole
                 className=''>
                 <div className='bg-white/5 border border-white/5 p-3 rounded-xl'>
                     <div className='flex'>
-                        <div className="w-12 aspect-square bg-indigo-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <div className="w-12 aspect-square relative overflow-hidden bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+                        <Image
+                            src={props?.props?.req_maker?.photo_url || 'https://ui-avatars.com/api/?name=User&background=random&size=128'}
+                            alt="User Image"
+                            fill
+                            className="object-cover"    
+                        />
                         </div>
 
                         <div className='pl-2 mr-auto flex flex-col justify-center'>

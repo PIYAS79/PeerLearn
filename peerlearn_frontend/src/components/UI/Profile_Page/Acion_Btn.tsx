@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useAcceptRequestMutation } from '@/redux/api/requestApi';
+import { useUpdateRequestStatusMutation } from '@/redux/api/requestApi';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { toast } from 'sonner';
 import { DatePicker } from 'antd';
@@ -38,7 +38,7 @@ const Action_Btn = ({ request_id, status }: Props) => {
   const [callDateTime, setCallDateTime] = useState<Dayjs | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const [acceptRequest] = useAcceptRequestMutation();
+  const [acceptRequest] = useUpdateRequestStatusMutation();
   const my_id = getFromLocalStorage('person_id');
 
   // ── OPEN / CLOSE ──────────────────────────

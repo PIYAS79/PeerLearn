@@ -45,7 +45,12 @@ router.patch('/status/:id',
     Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.STUDENT, User_Role.TEACHER),
     Validation_Request(Update_Request_Status_Zod_Type),
     Request_Controllers.update_status
-)
+);
+
+router.get('/call/:call_id',
+    Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.STUDENT, User_Role.TEACHER),
+    Request_Controllers.get_request_by_call_id
+);
 
 
 export const Request_Routes = router;

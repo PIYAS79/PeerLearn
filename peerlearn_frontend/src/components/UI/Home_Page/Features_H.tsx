@@ -3,22 +3,25 @@ import { motion } from "framer-motion";
 
 export const Features = () => {
   const features = [
-    {
+    { id : 1,
       icon: <Zap className="w-6 h-6 text-yellow-400" />,
       title: "Instant Help",
       description: "Post your problem and get connected with a peer who knows the topic in minutes."
     },
     {
+      id:2,
       icon: <Users className="w-6 h-6 text-blue-400" />,
       title: "Peer-to-Peer",
       description: "Learn from someone who speaks your language and understands exactly where you&apos;re stuck."
     },
     {
+      id:3,
       icon: <BrainCircuit className="w-6 h-6 text-purple-400" />,
       title: "Teach to Learn",
       description: "The best way to master a topic is to teach it. Earn reputation and help your community."
     },
     {
+      id:4,
       icon: <Clock className="w-6 h-6 text-green-400" />,
       title: "24/7 Availability",
       description: "Whether it&apos;s 2 PM or 2 AM before the exam, someone is always online to help."
@@ -36,10 +39,9 @@ export const Features = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, idx) => (
-            <motion.div 
-              key={idx}
-              whileHover={{ y: -5 }}
+          {features.map((feature, id) => (
+            <div 
+              key={feature.id}
               className="p-8 rounded-3xl bg-slate-800/50 border border-white/5 hover:border-indigo-500/30 transition-all"
             >
               <div className="w-12 h-12 rounded-2xl bg-slate-700/50 flex items-center justify-center mb-6">
@@ -49,7 +51,7 @@ export const Features = () => {
               <p className="text-slate-400 text-sm leading-relaxed">
                 {feature.description}
               </p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -6,7 +6,7 @@ const Hero_Section = () => {
   return (
     <section className="relative pt-32 pb-20 px-6 overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-indigo-600/20 blur-[120px] -z-10 rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-indigo-600/20 blur-[120px] -z-0 rounded-full" />
 
       <div className="max-w-7xl mx-auto text-center">
         <div>

@@ -548,7 +548,7 @@ const Setting_Page = () => {
                     {expertiseList?.map((item) => {
                       return (
                       <div
-                        key={item.id}
+                        key={item?.id}
                         className="flex items-center justify-between gap-4 p-5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all"
                       >
                         {/* INFO */}

@@ -68,6 +68,15 @@ const update_status = Async_Catch(async (req: Request, res: Response) => {
     });
 })
 
+const get_request_by_call_id = Async_Catch(async (req: Request, res: Response) => {
+    const result = await Request_Services.get_request_by_call_id(req.params.call_id as string);
+    res.status(httpStatus.OK).json({
+        status: 'success',
+        message: 'Request found successfully',
+        data: result,
+    });
+})
+
 
 
 export const Request_Controllers = {
@@ -77,5 +86,6 @@ export const Request_Controllers = {
     get_requests_as_target_user,
     delete_request,
     get_all_requests,
-    update_status
+    update_status,
+    get_request_by_call_id
 }

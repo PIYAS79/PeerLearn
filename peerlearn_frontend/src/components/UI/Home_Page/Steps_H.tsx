@@ -31,7 +31,7 @@ export const Steps = () => {
                 }
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-6">
-                  <div className="text-4xl font-black text-indigo-500/20 font-display">{item.step}</div>
+                  <div className="text-4xl font-black text-indigo-500/30 font-display">{item.step}</div>
                   <div>
                     <h3 className="text-xl font-bold mb-2">{item.title}</h3>
                     <p className="text-slate-400 leading-relaxed">{item.desc}</p>
@@ -53,7 +53,7 @@ export const Steps = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8">
-                <div className="glass p-4 rounded-2xl flex items-center gap-4">
+                <div className="custom-glass p-4 rounded-2xl flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
                     <CheckCircle2 className="text-white w-6 h-6" />
                   </div>

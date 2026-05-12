@@ -1,6 +1,7 @@
 import { baseApi } from './baseApi';
 import { tagTypes } from '../tag-types';
 import { Get_All_Request_Response_Type } from '@/types';
+import { get } from 'http';
 
 export const requestApi = baseApi.injectEndpoints({
     overrideExisting: true,
@@ -50,7 +51,7 @@ export const requestApi = baseApi.injectEndpoints({
             },
             providesTags: [tagTypes.request],
         }),
-        acceptRequest: build.mutation({
+        updateRequestStatus: build.mutation({
             query: (arg: Record<string, any>) => {
                 console.log(arg);
                 return ({
@@ -61,6 +62,17 @@ export const requestApi = baseApi.injectEndpoints({
             },
             invalidatesTags: [tagTypes.request,tagTypes.person],
         }),
+        getRequestByCallId: build.query({
+            query: (arg: Record<string, any>) => ({
+                url: `/request/call/${arg.call_id}`,
+                method: 'GET',
+                params: arg,
+            }),
+            transformResponse: (response: any) => {
+                return response?.data;
+            },
+            providesTags: [tagTypes.request],
+        }),
     }),
 });
 
@@ -69,5 +81,6 @@ export const {
     useCreateRequestMutation,
     useGetMyRequestQuery,
     useGetTargetRequestQuery,
-    useAcceptRequestMutation,
+    useUpdateRequestStatusMutation,
+    useGetRequestByCallIdQuery,
 } = requestApi;

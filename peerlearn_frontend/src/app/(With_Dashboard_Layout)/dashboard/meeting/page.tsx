@@ -2,7 +2,9 @@
 
 import { useRef, useState } from 'react';
 import io from 'socket.io-client';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
+import {redirect} from 'next/navigation';
+import { useUpdateRequestStatusMutation } from '@/redux/api/requestApi';
 
 
 const socket = io('https://peerlearn-socket-server.onrender.com', {
@@ -16,13 +18,12 @@ export default function Meeting_Page() {
   const localVideoRef = useRef<HTMLVideoElement | null>(null);
   const remoteVideoRef = useRef<HTMLVideoElement | null>(null);
   const peerRef = useRef<RTCPeerConnection | null>(null);
+  const [updateStatus] = useUpdateRequestStatusMutation();
 
   const [isCallActive, setIsCallActive] = useState(false);
   const searchParams = useSearchParams();
 
   const call_id = searchParams.get('call_id');
-
-  console.log(call_id);
   const roomId = call_id as string;
 
   const startCall = async () => {
@@ -99,6 +100,7 @@ export default function Meeting_Page() {
     });
 
     setIsCallActive(true);
+        redirect(`/dashboard/material?call_id=${roomId}`);
   };
 
   const endCall = () => {
@@ -134,38 +136,40 @@ export default function Meeting_Page() {
 
       <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
         <div>
-          <h3>Local</h3>
+          <h3 className='font-bold'>YOU</h3>
           <video
             ref={localVideoRef}
             autoPlay
             muted
             playsInline
-            style={{ width: '300px', background: 'black' }}
+            style={{ width: '400px', height: '300px', background: 'black', border: `2px solid green`, borderRadius: '10px' }}
           />
         </div>
 
         <div>
-          <h3>Remote</h3>
+          <h3 className='font-bold'>Remote</h3>
           <video
             ref={remoteVideoRef}
             autoPlay
             playsInline
-            style={{ width: '300px', background: 'black' }}
+            style={{ width: '400px', height: '300px', background: 'black', border: `2px solid #3b82f6`, borderRadius: '10px' }}
           />
         </div>
       </div>
 
-      <div style={{ marginTop: '20px' }}>
-        {!isCallActive ? (
-          <button onClick={startCall} style={{ padding: '10px 20px' }}>
-            Start Call
-          </button>
-        ) : (
-          <button onClick={endCall} style={{ padding: '10px 20px' }}>
-            End Call
-          </button>
-        )}
-      </div>
+      {call_id &&
+        <div style={{ marginTop: '20px' }}>
+          {!isCallActive ? (
+            <button className='btn bg-green-600 ' onClick={startCall} style={{ padding: '10px 20px' }}>
+              Start Call
+            </button>
+          ) : (
+            <button onClick={endCall} style={{ padding: '10px 20px' }}>
+              End Call
+            </button>
+          )}
+        </div>
+      }
     </div>
   );
 }

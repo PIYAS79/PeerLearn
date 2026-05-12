@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
+import { GraduationCap } from 'lucide-react';
 
 const Navbar = () => {
     const AuthButton = dynamic(() => import('./AuthButton'), { ssr: false })
@@ -21,7 +22,12 @@ const Navbar = () => {
                         <Link href={'/dashboard/profile'}><li>Profile</li></Link>
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">PeerLearn</a>
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+                        <GraduationCap className="text-white w-5 h-5" />
+                    </div>
+                    <span className="text-lg font-bold tracking-tight font-display">PeerLearn</span>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex mr-auto">
                 <ul className="menu menu-horizontal px-1 gap-4">

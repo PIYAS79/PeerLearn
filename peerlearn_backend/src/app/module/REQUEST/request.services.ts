@@ -312,6 +312,34 @@ const update_status = async (request_id: string, data: Update_Request_Status_Typ
     return result;
 }
 
+const get_request_by_call_id = async (call_id: string) => {
+    if (!call_id) {
+        throw new Final_App_Error(httpStatus.BAD_REQUEST, "Call id is required");
+    }
+    const request = await prisma.request.findFirst({
+        where: { call_id },
+        include: {
+            req_maker: {
+                select: {
+                    first_name: true,
+                    academicInfo: {
+                        select: {
+                            department: true,
+                        }
+                    },
+                    last_name: true,
+                    photo_url: true,
+                    email: true
+                }
+            }
+        }
+    })
+    if (!request) {
+        throw new Final_App_Error(httpStatus.NOT_FOUND, "Request not found");
+    }
+    return request;
+}
+
 export const Request_Services = {
     create_request,
     update_request,
@@ -319,5 +347,6 @@ export const Request_Services = {
     get_requests_as_target_user,
     delete_request,
     get_all_requests,
-    update_status
+    update_status,
+    get_request_by_call_id
 }

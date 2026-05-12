@@ -1,10 +1,10 @@
 import React from 'react';
-import { HomeOutlined, SettingOutlined, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { DownloadOutlined, HomeOutlined, SettingOutlined, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const items = [
     {
@@ -18,7 +18,7 @@ const items = [
     },
     {
         key: '2',
-        icon: React.createElement(UploadOutlined),
+        icon: React.createElement(DownloadOutlined),
         label: (
             <Link href="/dashboard/request">
                 Requests
@@ -58,6 +58,15 @@ const items = [
         label: (
             <Link href="/dashboard/setting">
                 Settings
+            </Link>
+        ),
+    },
+    {
+        key: '7',
+        icon: React.createElement(UploadOutlined),
+        label: (
+            <Link href="/dashboard/material">
+                Upload Material
             </Link>
         ),
     },

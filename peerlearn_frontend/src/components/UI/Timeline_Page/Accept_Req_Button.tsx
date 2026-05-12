@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { DatePicker, Input, Modal } from 'antd';
 import dayjs, { Dayjs } from 'dayjs';
 import { Zap } from 'lucide-react';
-import { useAcceptRequestMutation } from '@/redux/api/requestApi';
+import { useUpdateRequestStatusMutation } from '@/redux/api/requestApi';
 import { getFromLocalStorage } from '@/utils/local-storage';
 import { toast } from 'sonner';
 
@@ -16,7 +16,7 @@ type Props = {
 };
 
 const Accept_Req_Button = ({ request_id, from_dashboard }: Props) => {
-  const [acceptRequest] = useAcceptRequestMutation();
+  const [acceptRequest] = useUpdateRequestStatusMutation();
 
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isMessageModalOpen, setIsMessageModalOpen] = useState(false);
