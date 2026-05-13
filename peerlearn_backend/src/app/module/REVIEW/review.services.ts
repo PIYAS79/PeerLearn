@@ -47,7 +47,26 @@ const delete_review = async (review_id: string) => {
 const get_all_review_as_req_maker = async (req_maker_id: string) => {
     console.log("Maker");
     const result = await prisma.review.findMany({
-        where: { req_maker_id: req_maker_id }
+        where: { req_maker_id: req_maker_id },
+        include: {
+            request: {
+                select: {
+                    target_user: {
+                        select: {
+                            first_name: true,
+                            last_name: true,
+                            photo_url: true,
+                            email: true,
+                            academicInfo: {
+                                select: {
+                                    department: true,
+                                }
+                            }
+                        }
+                    },
+                }
+            }
+        }
     })
     return result;
 }
@@ -55,7 +74,26 @@ const get_all_review_as_req_maker = async (req_maker_id: string) => {
 const get_all_review_as_target_user = async (target_user_id: string) => {
     console.log("Target");
     const result = await prisma.review.findMany({
-        where: { target_user_id: target_user_id }
+        where: { target_user_id: target_user_id },
+        include: {
+            request: {
+                select: {
+                    req_maker: {
+                        select: {
+                            first_name: true,
+                            last_name: true,
+                            photo_url: true,
+                            email: true,
+                            academicInfo: {
+                                select: {
+                                    department: true,
+                                }
+                            }
+                        }
+                    },
+                }
+            }
+        }
     })
     return result;
 }

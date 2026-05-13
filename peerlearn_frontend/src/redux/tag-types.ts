@@ -5,6 +5,7 @@ export enum tagTypes {
     teacher = 'teacher',
     expertise = 'expertise',
     academic = 'academic',
+    review = 'review',
 
 }
 
@@ -15,4 +16,5 @@ export const tagTypesList = [
     tagTypes.teacher,
     tagTypes.expertise,
     tagTypes.academic,
+    tagTypes.review,
 ];
