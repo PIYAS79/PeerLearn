@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react"
 import { useState } from "react"
+import { useCreateQuestionsMutation } from "@/redux/api/questionApi"
 
 const Material_Upload_Page = () => {
   const [files, setFiles] = useState<File[]>([])
@@ -26,16 +27,17 @@ const Material_Upload_Page = () => {
   const { data, isLoading } = useGetRequestByCallIdQuery({
     call_id: call_id!,
   })
+  const [createQuestions] = useCreateQuestionsMutation();
 
-  const handleSubmitMaterial = (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmitMaterial = async ( e: React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault()
 
-    console.log({
-      files,
-      message,
+    const res = await createQuestions({
+      id: data?.id,
+      files:files,
+      message:message
     })
+    console.log(res)
   }
 
   const removeFile = (index: number) => {

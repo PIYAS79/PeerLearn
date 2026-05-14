@@ -28,8 +28,13 @@ export const axiosBaseQuery =
         data,
         params,
         headers: {
-          "Content-Type": contentType || "application/json",
-        },
+  ...(contentType && {
+    "Content-Type": contentType
+  }),
+  ...headers,
+  // If data is FormData, delete Content-Type so Axios sets it automatically with the correct boundary
+  ...(data instanceof FormData && { "Content-Type": undefined }),
+},
       });
       return {data:result?.data};
     } catch (axiosError) {

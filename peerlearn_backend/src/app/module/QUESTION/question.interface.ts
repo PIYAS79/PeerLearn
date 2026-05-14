@@ -8,7 +8,6 @@ export type Upload_File_Type = {
     path: string,
     size: number
 }
-
 export type AI_Question_Type = {
     question: string;
     options: [string, string, string, string];

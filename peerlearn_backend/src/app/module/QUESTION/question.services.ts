@@ -6,17 +6,16 @@ import type { JwtPayload } from "jsonwebtoken";
 import { prisma } from '../../lib/prisma';
 import { extractText } from "../../utils/extractText";
 import { buildPrompt } from "../../utils/buildPrompt";
-import { openai } from "../../utils/aiClient";
+import { ai } from "../../utils/aiClient";
 
 
 
 const create_questions = async (req: Request & { user?: JwtPayload }) => {
-    const file = req.file as Upload_File_Type
-    if (!file) {
-        throw new Final_App_Error(httpStatus.BAD_REQUEST, "Please upload the file")
+    const files = req.files as Upload_File_Type[]
+    if (!files || files.length ===0) {
+        throw new Final_App_Error(httpStatus.BAD_REQUEST, "Please upload at lease one file")
     }
     const { req_id } = req.params;
-    const token_data = req.user;
     const { prompt } = req.body;
 
     if (!req_id) {
@@ -30,25 +29,33 @@ const create_questions = async (req: Request & { user?: JwtPayload }) => {
     }
 
     // Extract text from file
-    const extractedText = await extractText(file);
+   const extractedTexts = await Promise.all(
+    files.map(file => extractText(file))
+);
+
+const combinedText = extractedTexts.join("\n\n");
 
     // Build AI prompt
-    const finalPrompt = buildPrompt({ extractedText, userPrompt: prompt });
+    const finalPrompt = buildPrompt({
+    extractedText: combinedText,
+    userPrompt: prompt
+});
 
     // Call AI 
-    const completion = await openai.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: [{ role: "user", content: finalPrompt }],
+    const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash", 
+        contents: finalPrompt,
+        config: {
+            // This forces Gemini to return strictly structured JSON data
+            responseMimeType: "application/json",
+        }
     });
 
-    const choice = completion.choices[0];
-    if (!choice || !choice.message) {
-        throw new Final_App_Error(httpStatus.INTERNAL_SERVER_ERROR, "AI returned empty response");
-    }
-    const rawContent = choice.message.content;
+    const rawContent = response.text;
     if (!rawContent) {
         throw new Final_App_Error(httpStatus.INTERNAL_SERVER_ERROR, "AI returned empty response");
     }
+
     // Parse AI JSON
     let questions: AI_Question_Type[];
     try {
@@ -56,6 +63,8 @@ const create_questions = async (req: Request & { user?: JwtPayload }) => {
     } catch {
         throw new Final_App_Error(httpStatus.INTERNAL_SERVER_ERROR, "AI response is not valid JSON");
     }
+    // ==========================================
+
     // Validation
     if (!Array.isArray(questions) || questions.length !== 5) {
         throw new Final_App_Error(httpStatus.INTERNAL_SERVER_ERROR, "AI must return exactly 5 questions");

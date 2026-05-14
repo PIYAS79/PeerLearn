@@ -10,7 +10,7 @@ import { User_Role } from '@prisma/client';
 const router = express.Router();
 
 router.post('/:req_id',
-    File_Uploader.upload.single('file'),
+    File_Uploader.upload.array('file',10),
     Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.TEACHER, User_Role.STUDENT),
     (req: Request, res: Response, next: NextFunction) => {
         req.body = Create_Question_Zod_Type.parse(JSON.parse(req.body.data));

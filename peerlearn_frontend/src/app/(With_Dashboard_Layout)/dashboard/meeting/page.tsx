@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import io from 'socket.io-client';
 import { useSearchParams } from 'next/navigation';
 import {redirect} from 'next/navigation';
-import { useUpdateRequestStatusMutation } from '@/redux/api/requestApi';
+import { useGetRequestByCallIdQuery, useUpdateRequestStatusMutation } from '@/redux/api/requestApi';
 
 
 const socket = io('https://peerlearn-socket-server.onrender.com', {
@@ -25,6 +25,8 @@ export default function Meeting_Page() {
 
   const call_id = searchParams.get('call_id');
   const roomId = call_id as string;
+  const {data:request_data}=useGetRequestByCallIdQuery({call_id:call_id});
+  console.log(request_data);
 
   const startCall = async () => {
     console.log('Starting call...');
@@ -100,7 +102,9 @@ export default function Meeting_Page() {
     });
 
     setIsCallActive(true);
-        redirect(`/dashboard/material?call_id=${roomId}`);
+        if(request_data?.status !=="ONGOING"){
+          updateStatus({request_id:request_data?.id,status:"ONGOING"})
+        }
   };
 
   const endCall = () => {
@@ -121,6 +125,8 @@ export default function Meeting_Page() {
     }
 
     setIsCallActive(false);
+    updateStatus({request_id:request_data?.id,status:"COMPLETED"})
+    redirect(`/dashboard/material?call_id=${roomId}`);
   };
 
   return (
