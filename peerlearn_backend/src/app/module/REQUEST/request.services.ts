@@ -331,7 +331,20 @@ const get_request_by_call_id = async (call_id: string) => {
                     photo_url: true,
                     email: true
                 }
-            }
+            },
+            target_user: {
+                select: {
+                    first_name: true,
+                    academicInfo: {
+                        select: {
+                            department: true,
+                        }
+                    },
+                    last_name: true,
+                    photo_url: true,
+                    email: true
+                }
+            },
         }
     })
     if (!request) {

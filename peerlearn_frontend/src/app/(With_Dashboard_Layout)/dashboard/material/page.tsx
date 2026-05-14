@@ -1,7 +1,7 @@
 "use client"
 
 import { useGetRequestByCallIdQuery } from "@/redux/api/requestApi"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import {
   BookOpen,
@@ -16,11 +16,12 @@ import {
 } from "lucide-react"
 import { useState } from "react"
 import { useCreateQuestionsMutation } from "@/redux/api/questionApi"
+import { toast } from "sonner"
 
 const Material_Upload_Page = () => {
   const [files, setFiles] = useState<File[]>([])
   const [message, setMessage] = useState("")
-
+  const router = useRouter();
   const searchParams = useSearchParams()
   const call_id = searchParams.get("call_id")
 
@@ -37,7 +38,12 @@ const Material_Upload_Page = () => {
       files:files,
       message:message
     })
-    console.log(res)
+    if(res?.data?.status==="success"){
+      toast.success(res?.data?.message)
+      router.push('/dashboard/profile');
+    }else{
+      toast.error("Something went wrong!");
+    }
   }
 
   const removeFile = (index: number) => {

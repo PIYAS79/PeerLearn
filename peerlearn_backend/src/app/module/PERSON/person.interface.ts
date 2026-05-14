@@ -25,4 +25,11 @@ export type Person_Query_Type = {
     email ?: string | undefined,
     bkash ?:string | undefined,
     search ?: string | undefined,
+    first_name?:string | undefined,
+    last_name?:string | undefined,
+    department?:string |undefined,
+    university?:string | undefined,
+    term?:string | undefined,
+    level?:string | undefined,
+    student_id?:string | undefined,
 }

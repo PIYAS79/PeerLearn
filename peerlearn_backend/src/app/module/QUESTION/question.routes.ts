@@ -23,7 +23,7 @@ router.get('/:id',
     Question_Controllers.get_my_questions
 )
 
-router.get('/check/:id',
+router.post('/check/:id',
     Check_Roles(User_Role.ADMIN, User_Role.SUPERADMIN, User_Role.STUDENT, User_Role.TEACHER),
     Question_Controllers.check_question_and_create_review
 

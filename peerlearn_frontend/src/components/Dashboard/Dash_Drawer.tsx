@@ -1,5 +1,5 @@
 import React from 'react';
-import { DownloadOutlined, ExclamationCircleOutlined, HomeOutlined, SettingOutlined, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { DownloadOutlined, ExclamationCircleOutlined, HomeOutlined, LockOutlined, SettingOutlined, StarOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
@@ -76,6 +76,15 @@ const items = [
         label: (
             <Link href="/dashboard/evaluation">
                 Evaluation
+            </Link>
+        ),
+    },
+    {
+        key: '9',
+        icon: React.createElement(LockOutlined),
+        label: (
+            <Link href="/dashboard/admin">
+                Admin Dashboard
             </Link>
         ),
     },

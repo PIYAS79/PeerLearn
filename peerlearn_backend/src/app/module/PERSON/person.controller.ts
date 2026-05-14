@@ -4,18 +4,21 @@ import { Person_Services } from "./person.services";
 import pick from "../../global/pick";
 import httpStatus from "http-status-codes";
 
-
+// Top-level + nested academicInfo fields all go here
 const person_queryable_fields = [
     'email',
     'bkash',
     'search',
     'first_name',
     'last_name',
-    // 'gender',
-    'is_active'
-
-]
-
+    'is_active',
+    // academicInfo nested fields (handled separately in service)
+    'department',
+    'university',
+    'term',
+    'student_id',
+    'level',
+];
 
 const update_person = Async_Catch(async (req: Request, res: Response) => {
     const { id } = req.params;
@@ -25,7 +28,7 @@ const update_person = Async_Catch(async (req: Request, res: Response) => {
         message: 'Person updated successfully',
         data: result,
     });
-})
+});
 
 const get_all_person = Async_Catch(async (req: Request, res: Response) => {
     const filters = pick(req.query, person_queryable_fields);
@@ -36,7 +39,7 @@ const get_all_person = Async_Catch(async (req: Request, res: Response) => {
         message: 'Persons retrieval successfully',
         meta: result.meta,
         data: result.data,
-    })
+    });
 });
 
 const get_person_by_email = Async_Catch(async (req: Request, res: Response) => {
@@ -47,11 +50,10 @@ const get_person_by_email = Async_Catch(async (req: Request, res: Response) => {
         message: 'Get Single Person successfully',
         data: result,
     });
-})
-
+});
 
 export const Person_Controller = {
     update_person,
     get_all_person,
-    get_person_by_email
-}
+    get_person_by_email,
+};

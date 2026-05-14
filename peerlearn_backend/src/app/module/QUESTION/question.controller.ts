@@ -24,6 +24,7 @@ const get_my_questions = Async_Catch(async (req: Request, res: Response) => {
 })
 
 const check_question_and_create_review = Async_Catch(async (req: Request, res: Response) => {
+    console.log(req)
     const result = await Question_Services.check_question_and_create_review(req.params.id as string, req.body);
     res.status(httpStatus.OK).json({
         status: 'success',

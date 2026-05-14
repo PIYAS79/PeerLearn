@@ -61,6 +61,12 @@ const delete_person_and_user = async (user_id: string, user: JwtPayload) => {
     if (!user_data) {
         throw new Final_App_Error(httpStatus.NOT_FOUND, 'User not found');
     }
+        const person_data = await prisma.person.findUnique({
+        where:{email:user_data.email}
+    })
+    if (!person_data) {
+        throw new Final_App_Error(httpStatus.NOT_FOUND, 'User not found');
+    }
     const isAdmin =
         user.role === User_Role.ADMIN ||
         user.role === User_Role.SUPERADMIN;
@@ -74,6 +80,38 @@ const delete_person_and_user = async (user_id: string, user: JwtPayload) => {
         );
     }
     const result = await prisma.$transaction(async (tc) => {
+        await tc.request.deleteMany({
+            where: {
+            OR: [
+                    {
+                        target_user_id: person_data.id,
+                    },
+                    {
+                        req_maker_id: person_data.id,
+                    },
+                ],
+            },
+        })
+        await tc.review.deleteMany({
+            where: {
+            OR: [
+                    {
+                        target_user_id: person_data.id,
+                    },
+                    {
+                        req_maker_id: person_data.id,
+                    },
+                ],
+            },
+        })
+        await tc.expertise.deleteMany({
+            where:{
+                person_id:person_data.id
+            }
+        })
+        await tc.academic_Info.deleteMany({
+            where: {person_id:person_data.id}
+        })
         const person = await tc.person.delete({
             where: { email: user_data.email }
         })

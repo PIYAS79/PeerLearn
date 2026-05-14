@@ -26,10 +26,30 @@ export const personApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: [tagTypes.person],
         }),
+        getAllPerson: build.query({
+            query: (arg: Record<string, any>) => ({
+                url: `/person`,
+                method: 'GET',
+                params: arg,
+            }),
+            transformResponse: (response: Person_Data_Response_Type) => {
+                return response?.data;
+            },
+            providesTags: [tagTypes.person],
+        }),
+        deleteUser:build.mutation({
+            query:(id:string)=>({
+                url:`/user/${id}`,
+                method:"DELETE"
+            }),
+            invalidatesTags:[tagTypes.person]
+        })
     }),
 });
 
 export const {
     useGetMeQuery,
     useUpdateMeMutation,
+    useGetAllPersonQuery,
+    useDeleteUserMutation
 } = personApi;

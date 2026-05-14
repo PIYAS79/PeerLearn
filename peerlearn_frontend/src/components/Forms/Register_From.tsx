@@ -40,22 +40,8 @@ const Register_From = () => {
             const res = await registerUser(payload);
             console.log(res);
             if (res?.data?.id) {
+                router.push('/login')
                 toast.success(res?.message || "Registration successful");
-
-                // auto login after register
-                const loginRes = await userLogin({
-                    email: formData.email,
-                    password: formData.password,
-                });
-
-                if (loginRes?.data?.access_token || loginRes?.data?.access_token) {
-                    storeUserInfo({
-                        access_token:
-                            loginRes.data.access_token || loginRes.data.access_token,
-                    });
-
-                    router.push("/profile");
-                }
             } else {
                 toast.error(res?.message || "Registration failed due to duplicate email");
             }

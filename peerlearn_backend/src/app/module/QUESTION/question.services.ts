@@ -116,6 +116,8 @@ const get_my_questions = async (request_id: string) => {
 }
 
 const check_question_and_create_review = async (request_id: string, data: any) => {
+    console.log(request_id)
+    console.log(data)
     const request = await prisma.request.findUnique({
         where: { id: request_id }
     })

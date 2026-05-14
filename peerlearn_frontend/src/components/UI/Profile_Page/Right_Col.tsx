@@ -150,14 +150,14 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Me as Tutor</p>
                         <div className="space-y-4">
                             {p_data?.p_data?.as_target_user?.filter(
-                                (session: any) => session.status === 'ACCEPTED'
+                                (session: any) => session.status === 'ACCEPTED' || session?.status==="ONGOING"
                             )?.length === 0 ? (
                                 <p className="text-center text-slate-600 text-sm py-4">
                                     No requests yet
                                 </p>
                             ) : (
                                 p_data?.p_data?.as_target_user
-                                    ?.filter((session: any) => session.status === 'ACCEPTED')
+                                    ?.filter((session: any) => session?.status === 'ACCEPTED'  || session?.status === "ONGOING")
                                     ?.map((session: any) => {
                                         const [date, time] = session.call_start_at.split(' at ');
 
@@ -181,6 +181,7 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                                                             Student: {session.req_maker.first_name}{' '}
                                                             {session.req_maker.last_name} - {date}
                                                         </p>
+                                                        <p className='text-[8px] font-bold'>{session?.status}</p>
                                                     </div>
                                                 </div>
                                             </Link>
