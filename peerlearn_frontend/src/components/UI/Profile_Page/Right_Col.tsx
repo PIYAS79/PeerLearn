@@ -25,7 +25,12 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
                                 <div key={one.id} className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-between">
                                     <div>
                                         <h4 className="text-sm font-bold mb-1">{one?.title}</h4>
-                                        <p className="text-[10px] text-slate-500">To: {one?.target_user?.first_name} {one?.target_user?.last_name} • {one?.created_at}</p>
+                                        {
+                                            one?.target_user ?
+                                            <p className="text-[10px] text-slate-500">To: {one?.target_user?.first_name} {one?.target_user?.last_name} • {one?.created_at}</p>
+                                            :
+                                            <p className="text-[10px] text-slate-500">To: OPEN REQUEST • {one?.created_at}</p>
+                                        }
                                     </div>
                                     <span
                                         className={`px-2 py-1 rounded-lg text-[10px] font-bold uppercase ${one.status === 'PENDING'

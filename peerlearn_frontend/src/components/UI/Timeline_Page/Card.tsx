@@ -29,9 +29,10 @@ const Timeline_Card = (props: { props: Request_Data_Type; from_dashboard?: boole
                     <div className='flex'>
                         <div className="w-12 aspect-square relative overflow-hidden bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
                         <Image
-                            src={props?.props?.req_maker?.photo_url || 'https://ui-avatars.com/api/?name=User&background=random&size=128'}
+                            src={props?.props?.req_maker?.photo_url || 'https://i1-c.pinimg.com/736x/7f/5c/9c/7f5c9c4aff40b7eeaef97ec40d116b6f.jpg'}
                             alt="User Image"
-                            fill
+                            width={48}
+                            height={48}
                             className="object-cover"    
                         />
                         </div>

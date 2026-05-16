@@ -34,15 +34,15 @@ const items = [
             </Link>
         ),
     },
-    {
-        key: '4',
-        icon: React.createElement(VideoCameraOutlined),
-        label: (
-            <Link href="/dashboard/meeting">
-                Meetings
-            </Link>
-        ),
-    },
+    // {
+    //     key: '4',
+    //     icon: React.createElement(VideoCameraOutlined),
+    //     label: (
+    //         <Link href="/dashboard/meeting">
+    //             Meetings
+    //         </Link>
+    //     ),
+    // },
     {
         key: '5',
         icon: React.createElement(HomeOutlined),
@@ -61,15 +61,15 @@ const items = [
             </Link>
         ),
     },
-    {
-        key: '7',
-        icon: React.createElement(UploadOutlined),
-        label: (
-            <Link href="/dashboard/material">
-                Upload Material
-            </Link>
-        ),
-    },
+    // {
+    //     key: '7',
+    //     icon: React.createElement(UploadOutlined),
+    //     label: (
+    //         <Link href="/dashboard/material">
+    //             Upload Material
+    //         </Link>
+    //     ),
+    // },
     {
         key: '8',
         icon: React.createElement(ExclamationCircleOutlined),
