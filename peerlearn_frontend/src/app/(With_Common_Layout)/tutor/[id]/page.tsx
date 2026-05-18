@@ -40,7 +40,7 @@ const Teacher_Details_Page = async ({ params }: PropTypes) => {
   }
 
   return (
-    <div className='min-h-screen bg-[#0f172a] text-white px-4 py-6'>
+    <div className='min-h-screen bg-[#0f172a] text-white px-4 py-6 pt-26'>
 
       {/* Container */}
       <div className='max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6'>

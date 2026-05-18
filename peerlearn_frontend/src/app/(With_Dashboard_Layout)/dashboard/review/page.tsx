@@ -187,7 +187,7 @@ const Review_Page = () => {
   const isLoading = isSentLoading || isEarnedLoading
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-6xl mx-auto p-10">
 
       {/* Header */}
       <div className="mb-6 flex items-center gap-2">

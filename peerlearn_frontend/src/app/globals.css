@@ -31,6 +31,30 @@
   padding: 24px !important;
 }
 
+/* Active item background */
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  border-right: 2px solid #6366f1 !important;
+}
+ 
+/* Active item text + icon */
+.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon,
+.ant-menu-dark .ant-menu-item-selected a {
+  color: #a5b4fc !important; /* indigo-300 */
+}
+ 
+/* Hover state */
+.ant-menu-dark .ant-menu-item:not(.ant-menu-item-selected):hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  color: #e2e8f0 !important;
+}
+ 
+/* Remove default Ant active blue glow */
+.ant-menu-dark.ant-menu-inline .ant-menu-item::after {
+  border-right: none !important;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;

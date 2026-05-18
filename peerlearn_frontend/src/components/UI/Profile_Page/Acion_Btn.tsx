@@ -121,12 +121,12 @@ const Action_Btn = ({ request_id, status }: Props) => {
       {status === 'PENDING' && <button
         type="button"
         onClick={openModal}
-        className="group relative inline-flex items-center gap-2 px-2 ml-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 active:scale-95 transition-all duration-150 text-white text-sm font-semibold shadow-lg shadow-indigo-500/20 cursor-pointer overflow-hidden"
+        className="group relative inline-flex items-center gap-2 px-2 py-1 ml-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 active:scale-95 transition-all duration-150 text-white text-sm font-semibold shadow-lg shadow-indigo-500/20 cursor-pointer overflow-hidden"
       >
         <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
         <Zap className="w-3.5 h-3.5" />
-        Action
-      </button>}
+<span className='text-[10px]'>ACTION</span>      
+</button>}
 
       {/* MODAL OVERLAY */}
       {isOpen && (

@@ -24,7 +24,7 @@ export const personApi = baseApi.injectEndpoints({
                 method: 'PATCH',
                 data: arg.data,
             }),
-            invalidatesTags: [tagTypes.person],
+            invalidatesTags: [tagTypes.person,tagTypes.request],
         }),
         getAllPerson: build.query({
             query: (arg: Record<string, any>) => ({

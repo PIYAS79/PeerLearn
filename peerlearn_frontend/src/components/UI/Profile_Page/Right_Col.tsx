@@ -12,11 +12,11 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
 
             {/* View Requests Section */}
             <section className=''>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <MessageSquare className="w-6 h-6 text-indigo-400" />
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                    <MessageSquare className="w-5 h-5 text-indigo-400" />
                     View Recent Requests
                 </h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     {/* Sent Requests (Student) */}
                     <div className="custom-glass rounded-3xl p-6 border-white/5">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Sent as Student</p>
@@ -98,11 +98,11 @@ const Right_Col = (p_data: { p_data: Person_Data_Type }) => {
 
             {/* Upcoming Sessions Section */}
             <section>
-                <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                    <Calendar className="w-6 h-6 text-indigo-400" />
+                <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-indigo-400" />
                     Upcoming Sessions
                 </h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
                     {/* As Student */}
                     <div className="custom-glass rounded-3xl p-6 border-white/5">
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Me as Student</p>

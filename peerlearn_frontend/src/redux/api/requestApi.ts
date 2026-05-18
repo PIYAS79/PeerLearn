@@ -73,6 +73,26 @@ export const requestApi = baseApi.injectEndpoints({
             },
             providesTags: [tagTypes.request],
         }),
+         updateMyRequest: build.mutation({
+            query: (arg: Record<string, any>) => {
+                return ({
+                    url: `/request/${arg.request_id}`,
+                    method: 'PATCH',
+                    data: {
+                        message:arg.message,
+                        is_urgent:arg.is_urgent
+},
+                })
+            },
+            invalidatesTags: [tagTypes.request,tagTypes.person],
+        }),
+        deleteMyRequest: build.mutation({
+            query: (request_id) => ({
+                url: `/request/${request_id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: [tagTypes.request],
+        }),
     }),
 });
 
@@ -83,4 +103,6 @@ export const {
     useGetTargetRequestQuery,
     useUpdateRequestStatusMutation,
     useGetRequestByCallIdQuery,
+    useUpdateMyRequestMutation,
+    useDeleteMyRequestMutation
 } = requestApi;

@@ -119,7 +119,13 @@ const get_all_person = async (params: Person_Query_Type, pagination: Pagination_
             },
             user:{
                 select:{
-                    id:true
+                    id:true,
+                    role:true,
+                }
+            },
+            as_review_target_user:{
+                select:{
+                    human_rating:true,
                 }
             }
         },
@@ -142,6 +148,7 @@ const get_person_by_email = async (email: string) => {
             academicInfo: true,
             expertises: true,
             as_req_maker: {
+                orderBy:{created_at:"desc"},
                 include: {
                     target_user: {
                         select: {
@@ -150,11 +157,12 @@ const get_person_by_email = async (email: string) => {
                             photo_url: true,
                         }
                     }
-                }
+                },
             },
             as_review_maker: true,
             as_review_target_user: true,
             as_target_user: {
+                orderBy:{created_at:"desc"},
                 include: {
                     req_maker: {
                         select: {
