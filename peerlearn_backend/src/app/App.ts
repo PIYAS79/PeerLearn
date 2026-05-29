@@ -4,13 +4,14 @@ import { Project_Routes } from './routes';
 import Route_Not_Found_Error from './errors/not_found';
 import Global_Error_Handler from './errors/global_error';
 import cookieParser from 'cookie-parser'
+import config from '../config';
 
 const app: Application = express();
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:["http://localhost:3000"],
+    origin:["http://localhost:3000",config.frontend_final_url as string],
     credentials:true
 }));
 app.use(express.json());

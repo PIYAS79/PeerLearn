@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "commonjs",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "tsx watch src/app/Server.ts",
     "build": "tsc && prisma generate",
