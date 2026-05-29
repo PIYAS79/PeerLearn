@@ -1,7 +1,7 @@
 import fs from "fs";
 import mammoth from "mammoth";
 import type { Upload_File_Type } from "../module/QUESTION/question.interface";
-import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs";
+import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 import pptx2json from "pptx2json";
 import Tesseract from "tesseract.js";
 // Tesseract is a OCR (Optical Character Recognition)

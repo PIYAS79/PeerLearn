@@ -35,7 +35,7 @@
     "multer": "^2.0.2",
     "nodemailer": "^7.0.12",
     "openai": "^6.15.0",
-    "pdfjs-dist": "^5.4.530",
+    "pdfjs-dist": "^3.11.174",
     "pg": "^8.16.3",
     "pptx2json": "^0.0.10",
     "tesseract.js": "^7.0.0",
