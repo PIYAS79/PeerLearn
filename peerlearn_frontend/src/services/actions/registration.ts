@@ -2,7 +2,7 @@
 
 export const registerUser = async (formData: any) => {
     const res = await fetch(
-        `http://localhost:5000/app/v1/user/person`,
+        `https://peer-learn-blush.vercel.app/app/v1/user/person`,
         {
             method: 'POST',
             headers: {

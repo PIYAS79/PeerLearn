@@ -42,12 +42,38 @@ const Login_Form = () => {
       animate={{ opacity: 1, y: 0 }}
       className="custom-glass rounded-[2.5rem] p-8 md:p-10 shadow-2xl border-white/10"
     >
-      <div className="text-center mb-10">
+      <div className="text-center mb-5">
         <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20 mx-auto mb-6">
           <GraduationCap className="text-white w-10 h-10" />
         </div>
         <h1 className="text-3xl font-bold tracking-tight font-display mb-2">Welcome Back</h1>
         <p className="text-slate-400">Continue your learning journey with PeerLearn</p>
+        <button
+          className="text-xs text-blue-400 underline uppercase cursor-pointer"
+          onClick={() => {
+            const dlg = document.getElementById('my_modal_1') as HTMLDialogElement | null;
+            dlg?.showModal();
+          }}
+        >
+          Click to Test Login
+        </button>
+        <dialog id="my_modal_1" className="modal">
+          <div className="modal-box">
+            <p className="pb-2 text-blue-400">Simple User</p>
+            <p className="pb-0">EMAIL : piyasmahmudealif@gmail.com</p>
+            <p className="pb-2">PASS : 222156479</p>
+            <br />
+            <p className="pb-2 text-blue-400">Admin Login</p>
+            <p className="pb-0">EMAIL : admin@gmail.com</p>
+            <p className="pb-0">PASS : 222156479</p>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn btn-error btn-xs">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
 
       <form className="space-y-5" onSubmit={handleLogin}>
@@ -64,7 +90,7 @@ const Login_Form = () => {
                 setFormData({ ...formData, email: e.target.value })
               }
               required
-              className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none"
+              className="w-full bg-white/5 border border-white/10 rounded-2xl mt-2 py-4 pl-12 pr-4 outline-none"
             />
           </div>
         </div>

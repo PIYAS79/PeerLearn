@@ -2,9 +2,26 @@
 import Link from 'next/link'
 import dynamic from 'next/dynamic';
 import { GraduationCap } from 'lucide-react';
+import { is_Log_in } from '@/services/auth.services';
 
 const Navbar = () => {
     const AuthButton = dynamic(() => import('./AuthButton'), { ssr: false })
+    const isLoggedIn = is_Log_in();
+
+    // Links always visible (public)
+    const publicLinks = [
+        { href: '/', label: 'Home' },
+        { href: '/about', label: 'About' },
+    ];
+
+    // Links only visible after login
+    const privateLinks = [
+        { href: '/timeline', label: 'Timeline' },
+        { href: '/tutor', label: 'Tutors' },
+        { href: '/dashboard/profile', label: 'Profile' },
+    ];
+
+    const navLinks = isLoggedIn ? [...publicLinks, ...privateLinks] : publicLinks;
 
     return (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-7xl">
@@ -19,14 +36,7 @@ const Navbar = () => {
 
                 {/* Desktop Nav Links */}
                 <nav className="hidden md:flex items-center gap-1">
-                    {[
-                        { href: '/', label: 'Home' },
-                        { href: '/timeline', label: 'Timeline' },
-                        { href: '/tutor', label: 'Tutors' },
-                        { href: '/dashboard/profile', label: 'Profile' },
-                        { href: '/about', label: 'About' },
-
-                    ].map(({ href, label }) => (
+                    {navLinks.map(({ href, label }) => (
                         <Link
                             key={href}
                             href={href}
@@ -45,13 +55,7 @@ const Navbar = () => {
                         </svg>
                     </div>
                     <ul tabIndex={-1} className="dropdown-content mt-3 p-2 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-white/10 shadow-2xl w-48 z-50">
-                        {[
-                            { href: '/', label: 'Home' },
-                            { href: '/timeline', label: 'Timeline' },
-                            { href: '/tutor', label: 'Top Tutors' },
-                            { href: '/dashboard/profile', label: 'Profile' },
-                            { href: '/about', label: 'About' },
-                        ].map(({ href, label }) => (
+                        {navLinks.map(({ href, label }) => (
                             <li key={href}>
                                 <Link href={href} className="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
                                     {label}

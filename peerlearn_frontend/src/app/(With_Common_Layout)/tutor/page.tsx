@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedRoute from "@/components/Shared/ProtectedRoute";
 import Tutor_Card from "@/components/UI/Tutor_Page/Card";
 import { useGetAllPersonQuery } from "@/redux/api/personApi";
 import { getFromLocalStorage } from "@/utils/local-storage";
@@ -294,4 +295,10 @@ const Tutor_Page = () => {
     );
 };
 
-export default Tutor_Page;
+const Protected_Tutor_Page = () => (
+    <ProtectedRoute>
+        <Tutor_Page />
+    </ProtectedRoute>
+);
+
+export default Protected_Tutor_Page;

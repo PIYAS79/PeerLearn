@@ -25,7 +25,7 @@ const AuthButton = () => {
                 </div> :
                 <div className='flex justify-center'>
                     <Link href={'/login'}>
-                        <button className='btn bg-indigo-600 btn-error'>Login</button>
+                        <button className='btn bg-indigo-600 rounded-lg'>LOGIN</button>
                     </Link>
                 </div>
             }

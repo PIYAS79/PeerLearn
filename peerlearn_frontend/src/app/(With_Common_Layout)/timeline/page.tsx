@@ -1,4 +1,5 @@
 'use client';
+import ProtectedRoute from '@/components/Shared/ProtectedRoute';
 import Timeline_Card from '@/components/UI/Timeline_Page/Card';
 import { useCreateRequestMutation, useGetAllRequestQuery } from '@/redux/api/requestApi';
 import { Request_Data_Type } from '@/types';
@@ -242,4 +243,10 @@ const Timeline_Page = () => {
   );
 };
 
-export default Timeline_Page;
+const Protected_Timeline_Page = () => (
+  <ProtectedRoute>
+    <Timeline_Page />
+  </ProtectedRoute>
+);
+
+export default Protected_Timeline_Page;

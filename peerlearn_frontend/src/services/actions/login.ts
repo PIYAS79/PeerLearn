@@ -5,7 +5,7 @@ import setAccessToken from './set_Access_Token';
 
 export const userLogin = async (data: any) => {
     const res = await fetch(
-        `http://localhost:5000/app/v1/auth/login`,
+        `https://peer-learn-blush.vercel.app/app/v1/auth/login`,
         {
             method: 'POST',
             headers: {

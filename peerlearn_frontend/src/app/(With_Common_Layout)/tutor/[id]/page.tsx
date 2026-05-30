@@ -23,7 +23,7 @@ const Teacher_Details_Page = async ({ params }: PropTypes) => {
   const { id } = await params;
 
   const res = await fetch(
-    `http://localhost:5000/app/v1/person/${id}`,
+    `https://peer-learn-blush.vercel.app/app/v1/person/${id}`,
     {
       cache: 'no-store',
     }
