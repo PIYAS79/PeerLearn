@@ -11,8 +11,8 @@ Connect with fellow students, request tutoring sessions, upload study materials,
 <br/>
 
 [![Live Frontend](https://img.shields.io/badge/🌐%20Live%20Frontend-Visit%20Site-6366f1?style=for-the-badge)](https://peerlearn-mu.vercel.app)
-[![Live Backend](https://img.shields.io/badge/⚙️%20Live%20Backend-API%20Server-0f172a?style=for-the-badge)](https://peer-learn-blush.vercel.app)
-[![Live Signaling Server](https://img.shields.io/badge/⚙️%20Live%20Backend-API%20Server-0f172a?style=for-the-badge)](https://peerlearn-socket-server.onrender.com)
+[![Live Backend](https://img.shields.io/badge/⚙️%20Live%20Backend-Visit%20Server-6366f1?style=for-the-badge)](https://peer-learn-blush.vercel.app)
+[![Live Signaling Server](https://img.shields.io/badge/⚙️%20Live%20Signaling%20Server-Visit%20Server-6366f1?style=for-the-badge)](https://peerlearn-socket-server.onrender.com)
 
 </div>
 
@@ -20,22 +20,26 @@ Connect with fellow students, request tutoring sessions, upload study materials,
 
 ## 📸 Screenshots
 
-> **Replace the placeholder paths below with your actual screenshots.**
-> Upload your images to the `screenshots/` folder in the repo and update the paths.
-
 | Page | Preview |
 |------|---------|
-| 🏠 Home Page | ![Home Page](./screenshots/home.png) |
-| 🏠 Home Page | ![Home Page](./screenshots/timeline.png) |
-| 🏠 Home Page | ![Home Page](./screenshots/tutor.png) |
-| ℹ️ About Page | ![About Page](./screenshots/about.png) |
-| 🔐 Login Page | ![Login Page](./screenshots/login.png) |
-| 📝 Register Page | ![Register Page](./screenshots/register.png) |
-| 👤 Profile Page | ![Profile Page](./screenshots/profile.png) |
-| 📊 Dashboard | ![Dashboard Page](./screenshots/dashboard.png) |
-| 📊 Dashboard | ![Dashboard Page](./screenshots/vcall.png) |
+| Home Page | ![Home Page](./screenshots/home.png) |
+| Timeline Page | ![Home Page](./screenshots/timeline.png) |
+| Tutors Page | ![Home Page](./screenshots/tutor.png) |
+| Profile Page | ![Profile Page](./screenshots/profile.png) |
+| Dashboard Page | ![Dashboard Page](./screenshots/dashboard.png) |
+| Setting Page | ![Dashboard Page](./screenshots/setting.png) |
+| Video Call Page | ![Dashboard Page](./screenshots/vcall.png) |
+| About Page | ![About Page](./screenshots/about.png) |
+| Login Page | ![Login Page](./screenshots/login.png) |
+| Register Page | ![Register Page](./screenshots/register.png) |
 
 ---
+
+### 🛠️ Test The Website
+| User Type | Email | Password |
+|---|---|---|
+| Basic User | piyasmahmudealif@gmail.com|222156479 |
+| Admin | admin@gmail.com|222156479 |
 
 ## ✨ Features
 
@@ -242,9 +246,9 @@ Both frontend and backend are deployed on Vercel with Neon PostgreSQL.
 
 | Service | URL |
 |---|---|
-| 🖥️ Frontend | [https://your-frontend.vercel.app](https://your-frontend.vercel.app) |
-| ⚙️ Backend API | [https://your-backend.vercel.app](https://your-backend.vercel.app) |
-| 🗄️ Database | Neon PostgreSQL |
+| 🖥️ Frontend | [https://peerlearn-mu.vercel.app](https://peerlearn-mu.vercel.app) |
+| ⚙️ Backend API | [https://peer-learn-blush.vercel.app](https://peer-learn-blush.vercel.app) |
+| 🗄️ Database | [Neon PostgreSQL](https://neon.com) |
 
 ---
 
@@ -310,8 +314,10 @@ PeerLearn/
 
 ## 👨‍💻 Author
 
-**PIYAS**
+**S M Piyas Mahamude Alif**
 - GitHub: [@PIYAS79](https://github.com/PIYAS79)
+- Email: [piyasmahmudealif@gmail.com](piyasmahmudealif@gmail.com)
+- LinkedIn: [https://www.linkedin.com/in/piyasmahamudealif](https://www.linkedin.com/in/piyasmahamudealif)
 
 ---
 
