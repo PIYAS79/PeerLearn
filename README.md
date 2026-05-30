@@ -10,9 +10,9 @@ Connect with fellow students, request tutoring sessions, upload study materials,
 
 <br/>
 
-[![Live Frontend](https://img.shields.io/badge/🌐%20Live%20Frontend-Visit%20Site-6366f1?style=for-the-badge)](https://your-frontend.vercel.app)
-[![Live Backend](https://img.shields.io/badge/⚙️%20Live%20Backend-API%20Server-0f172a?style=for-the-badge)](https://your-backend.vercel.app)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-PeerLearn-181717?style=for-the-badge&logo=github)](https://github.com/PIYAS79/PeerLearn)
+[![Live Frontend](https://img.shields.io/badge/🌐%20Live%20Frontend-Visit%20Site-6366f1?style=for-the-badge)](https://peerlearn-mu.vercel.app)
+[![Live Backend](https://img.shields.io/badge/⚙️%20Live%20Backend-API%20Server-0f172a?style=for-the-badge)](https://peer-learn-blush.vercel.app)
+[![Live Signaling Server](https://img.shields.io/badge/⚙️%20Live%20Backend-API%20Server-0f172a?style=for-the-badge)](https://peerlearn-socket-server.onrender.com)
 
 </div>
 
@@ -26,11 +26,14 @@ Connect with fellow students, request tutoring sessions, upload study materials,
 | Page | Preview |
 |------|---------|
 | 🏠 Home Page | ![Home Page](./screenshots/home.png) |
+| 🏠 Home Page | ![Home Page](./screenshots/timeline.png) |
+| 🏠 Home Page | ![Home Page](./screenshots/tutor.png) |
 | ℹ️ About Page | ![About Page](./screenshots/about.png) |
 | 🔐 Login Page | ![Login Page](./screenshots/login.png) |
 | 📝 Register Page | ![Register Page](./screenshots/register.png) |
 | 👤 Profile Page | ![Profile Page](./screenshots/profile.png) |
 | 📊 Dashboard | ![Dashboard Page](./screenshots/dashboard.png) |
+| 📊 Dashboard | ![Dashboard Page](./screenshots/vcall.png) |
 
 ---
 
